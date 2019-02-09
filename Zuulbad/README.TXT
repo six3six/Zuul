@@ -1,12 +1,12 @@
-﻿------------------------------------------------------------------------
-Ceci est le fichier LISEZMOI (README) du projet.  Décrivez-y votre projet.
-Dites au lecteur (qui ne sait rien du projet) ce qu'il a besoin de savoir.
-Au minimum, remplissez cette description :
+------------------------------------------------------------------------
+This is the project README file. Here, you should describe your project.
+Tell the reader (someone who does not know anything about this project)
+all he/she needs to know. The comments should usually include at least:
 ------------------------------------------------------------------------
 
-TITRE DU PROJET : Zuul Bad
-BUT POURSUIVI :
-VERSION ou DATE :
-COMMENT INVOQUER CE PROJET :
-AUTEURS : Louis DESPLANCHE
-INSTRUCTIONS Ŕ L'USAGER :
+PROJECT TITLE:
+PURPOSE OF PROJECT:
+VERSION or DATE:
+HOW TO START THIS PROJECT:
+AUTHORS:
+USER INSTRUCTIONS:
