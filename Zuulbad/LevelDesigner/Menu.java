@@ -43,7 +43,6 @@ public class Menu extends JFrame
         //pane with null layout
         JPanel contentPane = new JPanel(null);
         contentPane.setPreferredSize(new Dimension(214,340));
-        contentPane.setBackground(new Color(192,192,192));
 
         aBtnItm = new JButton();
         aBtnItm.setBounds(5,142,194,38);

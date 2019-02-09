@@ -28,14 +28,18 @@ public class Home extends JFrame
      */
     private void AfficherFenetre()
     {
-        
+        try{
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        }
+        catch (Exception e) { 
+            System.out.println("Look and Feel not set"); 
+        } 
         this.setTitle("Editeur de jeu");
         this.setSize(488,242);
 
         //pane with null layout
         JPanel contentPane = new JPanel(null);
         contentPane.setPreferredSize(new Dimension(488,242));
-        contentPane.setBackground(new Color(192,192,192));
 
 
         aBtnCht = new JButton();
