@@ -1,4 +1,3 @@
-package v1;
 
 import java.util.Scanner;
 
@@ -23,6 +22,7 @@ public class Parser
     private CommandWords aValidCommands;  // (voir la classe CommandWords)
     private Scanner      aReader;         // permettra de lire les commandes au clavier
 
+    
     /**
      * Constructeur par defaut qui cree les 2 objets prevus pour les attributs
      */

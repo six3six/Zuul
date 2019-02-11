@@ -1,4 +1,3 @@
-package v1;
 
 
 /**
@@ -11,6 +10,7 @@ public class Utilisation
 {
     public static void essai()
     {
+        
         System.out.println("racNeg(40) = " + Calc.racNeg(40));
         System.out.println("sontProches(4, 4+1E-10) = " + Calc.sontProches(4, 4+1E-10));
         System.out.println("sontProches(4, 8) = " + Calc.sontProches(4, 8));
