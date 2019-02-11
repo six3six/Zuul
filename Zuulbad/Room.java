@@ -55,6 +55,11 @@ public class Room
         return aExits.get(pDirection);
     }
     
+    public String getLongDescription()
+    {
+        return "You are " + aDescription + ".\n" + getExitString();
+    }
+    
     /**
      * Récupere la liste des salles disponibles
      */
