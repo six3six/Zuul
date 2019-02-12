@@ -5,6 +5,7 @@ import java.util.*;
  */
 public class Room
 {
+    private static HashMap<String, Room> aRoomList;
     private String aDescription;
     private HashMap<String, Room> aExits;
     
@@ -75,5 +76,25 @@ public class Room
         return vRes.toString();
     }
     
+    public static void CreateRoom()
+    {
+        aRoomList = new HashMap<String, Room>();
+        
+        aRoomList.put("outside", new Room("outside the main entrance of the university"));
+        aRoomList.put("theatre", new Room("in a lecture theatre"));
+        aRoomList.put("pub", new Room("in the campus pub"));
+        aRoomList.put("lab", new Room("in a computing lab"));
+        aRoomList.put("office", new Room("in the computing admin office"));
+        
+        getRoom("outside").setExits(null, getRoom("theatre"), getRoom("lab"), getRoom("pub"), null, null);
+        getRoom("theatre").setExits(null, null, null, getRoom("office"), null, null);
+        getRoom("pub").setExits(null, getRoom("outside"), null, null, null, null);
+        getRoom("lab").setExits(getRoom("outside"), getRoom("office"), null, null, null, null);
+        getRoom("office").setExits(null, null, null, getRoom("lab"), null, null);
+    }
     
+    public static Room getRoom(final String pId)
+    {
+        return aRoomList.get(pId);
+    }
 } // Room

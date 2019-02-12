@@ -5,7 +5,7 @@ public class Game
 {
     private Room aCurrentRoom;
     private Parser aParser;
- 
+
     /**
      * Contructeur de Game
      */
@@ -15,8 +15,7 @@ public class Game
         this.createRooms();
         aParser = new Parser();
     }
-    
-    
+
     /**
      * Boucle principale du jeu
      */
@@ -27,7 +26,7 @@ public class Game
         while(!vFinished) vFinished = this.processCommand(this.aParser.getCommand());        
         System.out.println("Thank you for playing. Good bye.");
     }
-    
+
     /**
      * Affiche le message d'accueil du jeu
      */
@@ -39,7 +38,7 @@ public class Game
         System.out.println(" ");
         printLocationInfo();
     }
-    
+
     /**
      * Affiche l'aide
      */
@@ -51,27 +50,16 @@ public class Game
         System.out.println("Your command words are:");
         System.out.println(aParser.getCommandList());
     }
-    
+
     /**
      * Créé les pièces de la carte
      */
     private void createRooms()
     {
-        Room vOutside = new Room("outside the main entrance of the university");
-        Room vTheatre = new Room("in a lecture theatre");
-        Room vPub = new Room("in the campus pub");
-        Room vLab = new Room("in a computing lab");
-        Room vOffice = new Room("in the computing admin office");
-        
-        vOutside.setExits(null, vTheatre, vLab, vPub, null, null);
-        vTheatre.setExits(null, null, null, vOutside, null, null);
-        vPub.setExits(null, vOutside, null, null, null, null);
-        vLab.setExits(vOutside, vOffice, null, null, null, null);
-        vOffice.setExits(null, null, null, vLab, null, null);
-        
-        this.aCurrentRoom = vOutside;
+        Room.CreateRoom();
+        aCurrentRoom = Room.getRoom("outside");
     }
-    
+
     /**
      * Traite les commandes précédemment parser
      * @param commande
@@ -92,10 +80,10 @@ public class Game
             System.out.println("I don't know what you mean...");
             return true;
         }
-        
+
         return false;
     }
-    
+
     /**
      * Quitte le jeu
      */
@@ -108,7 +96,7 @@ public class Game
         }
         return true;
     }
-    
+
     /**
      * Change de salle
      */
@@ -119,10 +107,10 @@ public class Game
             System.out.println("Go where ?");
             return;
         }
-        
+
         Room vNextRoom = null;
         String vDirection = pCmd.getSecondWord();
-        
+
         if(vDirection.equals("north") && aCurrentRoom.getExit("north") != null) vNextRoom = aCurrentRoom.getExit("north");
         else if(vDirection.equals("east") && aCurrentRoom.getExit("east") != null) vNextRoom = aCurrentRoom.getExit("east");
         else if(vDirection.equals("south") && aCurrentRoom.getExit("south") != null) vNextRoom = aCurrentRoom.getExit("south");
@@ -130,16 +118,16 @@ public class Game
         else if(vDirection.equals("top") && aCurrentRoom.getExit("top") != null) vNextRoom = aCurrentRoom.getExit("top");
         else if(vDirection.equals("down") && aCurrentRoom.getExit("down") != null) vNextRoom = aCurrentRoom.getExit("down");
         else if(vDirection.equals("north") || vDirection.equals("east") || vDirection.equals("south") || vDirection.equals("west") || vDirection.equals("top") || vDirection.equals("down")) System.out.println("There is no door !"); 
-        
+
         else System.out.println("Unknown direction !");
-        
+
         if(vNextRoom != null)
         {
             this.aCurrentRoom = vNextRoom;
             printLocationInfo();
         }
     }
-    
+
     /**
      * Affiche les pièces disponibles
      */
@@ -149,15 +137,15 @@ public class Game
         System.out.print(aCurrentRoom.getExitString());
         System.out.println();
     }
-        
+
     private void look()
     {
         System.out.println(aCurrentRoom.getLongDescription());
     }
-    
+
     private void eat()
     {
         System.out.println("You have eaten now and you are not hungry any more.");
     }
-    
+
 } // Game
