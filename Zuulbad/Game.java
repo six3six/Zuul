@@ -49,7 +49,7 @@ public class Game
         System.out.println("You wander around at the university");
         System.out.println(" ");
         System.out.println("Your command words are:");
-        aParser.showCommands();
+        System.out.println(aParser.getCommandList());
     }
     
     /**

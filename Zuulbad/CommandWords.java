@@ -44,7 +44,7 @@ public class CommandWords
     
     
     /**
-     * 
+     * Affiche toute les commandes dans le terminal
      */
     public void showAll()
     {
@@ -52,5 +52,14 @@ public class CommandWords
             System.out.print(command + " ");
         }
         System.out.println();
+    }
+    
+    public String getCommandList()
+    {
+        String vResult = "";
+        for(String command : sValidCommands) {
+            vResult += command + " ";
+        }
+        return vResult;
     }
 } // CommandWords

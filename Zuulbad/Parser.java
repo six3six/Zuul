@@ -70,4 +70,9 @@ public class Parser
     {
         aValidCommands.showAll();
     }
+    
+    public String getCommandList()
+    {
+        return aValidCommands.getCommandList();
+    }
 } // Parser
