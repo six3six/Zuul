@@ -56,10 +56,10 @@ public class CommandWords
     
     public String getCommandList()
     {
-        String vResult = "";
+        StringBuilder vResult = new StringBuilder(sValidCommands.length * 10);
         for(String command : sValidCommands) {
-            vResult += command + " ";
+            vResult.append(command + " ");
         }
-        return vResult;
+        return vResult.toString();
     }
 } // CommandWords
