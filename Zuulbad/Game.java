@@ -90,6 +90,7 @@ public class Game
         else if(pCmd.getCommandWord().equals("help")) this.printHelp();
         else if(pCmd.getCommandWord().equals("quit")) return this.quit(pCmd);
         else if(pCmd.getCommandWord().equals("look")) look();
+        else if(pCmd.getCommandWord().equals("eat")) eat();
         else
         {
             System.out.println("I don't know what you mean...");
@@ -158,4 +159,8 @@ public class Game
         System.out.println(aCurrentRoom.getLongDescription());
     }
     
+    private void eat()
+    {
+        System.out.println("You have eaten now and you are not hungry any more.");
+    }
 } // Game
