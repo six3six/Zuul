@@ -6,6 +6,10 @@ public class Game
     private Room aCurrentRoom;
     private Parser aParser;
     
+    private static String validCommands[] = {
+        "go", "quit", "help"
+    };
+    
     /**
      * Contructeur de Game
      */
@@ -85,6 +89,7 @@ public class Game
         if(pCmd.getCommandWord().equals("go")) this.goRoom(pCmd);
         else if(pCmd.getCommandWord().equals("help")) this.printHelp();
         else if(pCmd.getCommandWord().equals("quit")) return this.quit(pCmd);
+        else if(pCmd.getCommandWord().equals("look")) look();
         else
         {
             System.out.println("I don't know what you mean...");
@@ -99,12 +104,12 @@ public class Game
      */
     private boolean quit(final Command pCmd)
     {
-        if(!pCmd.hasSecondWord())
+        if(pCmd.hasSecondWord())
         {
             System.out.println("Quit what ?");
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
     
     /**
@@ -144,10 +149,13 @@ public class Game
     private void printLocationInfo()
     {
         System.out.println("You are " + aCurrentRoom.getDescription());
-        System.out.print("Exists: ");
         System.out.print(aCurrentRoom.getExitString());
         System.out.println();
     }
     
+    private void look()
+    {
+        System.out.println(aCurrentRoom.getLongDescription());
+    }
     
 } // Game
