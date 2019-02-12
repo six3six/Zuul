@@ -5,11 +5,7 @@ public class Game
 {
     private Room aCurrentRoom;
     private Parser aParser;
-    
-    private static String validCommands[] = {
-        "go", "quit", "help"
-    };
-    
+ 
     /**
      * Contructeur de Game
      */
@@ -53,7 +49,7 @@ public class Game
         System.out.println("You wander around at the university");
         System.out.println(" ");
         System.out.println("Your command words are:");
-        System.out.println("  go quit help");
+        aParser.showCommands();
     }
     
     /**
@@ -153,7 +149,7 @@ public class Game
         System.out.print(aCurrentRoom.getExitString());
         System.out.println();
     }
-    
+        
     private void look()
     {
         System.out.println(aCurrentRoom.getLongDescription());
@@ -163,4 +159,5 @@ public class Game
     {
         System.out.println("You have eaten now and you are not hungry any more.");
     }
+    
 } // Game

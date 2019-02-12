@@ -41,4 +41,16 @@ public class CommandWords
         // n'a pas ete trouvee dans le tableau
         return false;
     } // isCommand()
+    
+    
+    /**
+     * 
+     */
+    public void showAll()
+    {
+        for(String command : sValidCommands) {
+            System.out.print(command + " ");
+        }
+        System.out.println();
+    }
 } // CommandWords
