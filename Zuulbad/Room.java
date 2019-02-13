@@ -8,11 +8,12 @@ public class Room
     private static HashMap<String, Room> aRoomList;
     private String aDescription;
     private HashMap<String, Room> aExits;
+    private String aImageName;
     
     /**
      * Constructeur de room
      */
-    public Room(final String pDescription)
+    public Room(final String pDescription, String image)
     {
         this.aDescription = pDescription;
         aExits = new HashMap<String, Room>();
@@ -80,11 +81,11 @@ public class Room
     {
         aRoomList = new HashMap<String, Room>();
         
-        aRoomList.put("outside", new Room("outside the main entrance of the university"));
-        aRoomList.put("theatre", new Room("in a lecture theatre"));
-        aRoomList.put("pub", new Room("in the campus pub"));
-        aRoomList.put("lab", new Room("in a computing lab"));
-        aRoomList.put("office", new Room("in the computing admin office"));
+        aRoomList.put("outside", new Room("outside the main entrance of the university", ""));
+        aRoomList.put("theatre", new Room("in a lecture theatre", ""));
+        aRoomList.put("pub", new Room("in the campus pub", ""));
+        aRoomList.put("lab", new Room("in a computing lab", ""));
+        aRoomList.put("office", new Room("in the computing admin office", ""));
         
         getRoom("outside").setExits(null, getRoom("theatre"), getRoom("lab"), getRoom("pub"), null, null);
         getRoom("theatre").setExits(null, null, null, getRoom("office"), null, null);
@@ -96,5 +97,13 @@ public class Room
     public static Room getRoom(final String pId)
     {
         return aRoomList.get(pId);
+    }
+    
+    /**
+     * Return a string describing the room's image name
+     */
+    public String getImageName()
+    {
+    	return aImageName;
     }
 } // Room
