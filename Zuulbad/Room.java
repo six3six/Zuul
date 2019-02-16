@@ -13,9 +13,10 @@ public class Room
     /**
      * Constructeur de room
      */
-    public Room(final String pDescription, String image)
+    public Room(final String pDescription, String pImage)
     {
         this.aDescription = pDescription;
+        this.aImageName = pImage;
         aExits = new HashMap<String, Room>();
     }
     
@@ -81,7 +82,7 @@ public class Room
     {
         aRoomList = new HashMap<String, Room>();
         
-        aRoomList.put("outside", new Room("outside the main entrance of the university", ""));
+        aRoomList.put("outside", new Room("outside the main entrance of the university", "Assets/Map/outside.jpg"));
         aRoomList.put("theatre", new Room("in a lecture theatre", ""));
         aRoomList.put("pub", new Room("in the campus pub", ""));
         aRoomList.put("lab", new Room("in a computing lab", ""));
@@ -92,6 +93,7 @@ public class Room
         getRoom("pub").setExits(null, getRoom("outside"), null, null, null, null);
         getRoom("lab").setExits(getRoom("outside"), getRoom("office"), null, null, null, null);
         getRoom("office").setExits(null, null, null, getRoom("lab"), null, null);
+        
     }
     
     public static Room getRoom(final String pId)

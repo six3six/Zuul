@@ -21,6 +21,7 @@ public class GameEngine
     {
         aGui = userInterface;
         printWelcome();
+        aGui.showImage(aCurrentRoom.getImageName());
     }
 
     /**
@@ -54,6 +55,7 @@ public class GameEngine
     {
         Room.CreateRoom();
         aCurrentRoom = Room.getRoom("outside");
+        
     }
 
     /**
