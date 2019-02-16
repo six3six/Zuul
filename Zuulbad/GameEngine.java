@@ -68,7 +68,7 @@ public class GameEngine
         }
         if(pCmd.getCommandWord().equals("go")) this.goRoom(pCmd);
         else if(pCmd.getCommandWord().equals("help")) this.printHelp();
-        else if(pCmd.getCommandWord().equals("quit")) return this.quit(pCmd);
+        else if(pCmd.getCommandWord().equals("quit")) this.quit(pCmd);
         else if(pCmd.getCommandWord().equals("look")) look();
         else if(pCmd.getCommandWord().equals("eat")) eat();
         else
@@ -89,14 +89,13 @@ public class GameEngine
     /**
      * Quitte le jeu
      */
-    private boolean quit(final Command pCmd)
+    private void quit(final Command pCmd)
     {
         if(pCmd.hasSecondWord())
         {
             aGui.println("Quit what ?");
-            return false;
         }
-        return true;
+        endGame();
     }
 
     /**
@@ -150,6 +149,12 @@ public class GameEngine
     private void eat()
     {
         aGui.println("You have eaten now and you are not hungry any more.");
+    }
+    
+    private void endGame()
+    {
+        aGui.println("Thank you for playing.  Good bye.");
+        aGui.enable(false);
     }
 
 } // Game
