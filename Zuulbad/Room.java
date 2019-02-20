@@ -34,12 +34,12 @@ public class Room
     public void setExits(final Room pNorthExit, final Room pEastExit, final Room pSouthExit,
         final Room pWestExit, final Room pTopExit, final Room pDownExit)
     {
-        if(pNorthExit != null) aExits.put("north", pNorthExit);
-        if(pEastExit != null) aExits.put("east", pEastExit);
-        if(pSouthExit != null) aExits.put("south", pSouthExit);
-        if(pWestExit != null) aExits.put("west", pWestExit);
-        if(pTopExit != null) aExits.put("top", pTopExit);
-        if(pDownExit != null) aExits.put("down", pDownExit);
+        if(pNorthExit != null) aExits.put("nord", pNorthExit);
+        if(pEastExit != null) aExits.put("est", pEastExit);
+        if(pSouthExit != null) aExits.put("sud", pSouthExit);
+        if(pWestExit != null) aExits.put("ouest", pWestExit);
+        if(pTopExit != null) aExits.put("haut", pTopExit);
+        if(pDownExit != null) aExits.put("bas", pDownExit);
     }
     
     /**
@@ -60,7 +60,7 @@ public class Room
     
     public String getLongDescription()
     {
-        return "You are " + aDescription + ".\n" + getExitString();
+        return "Vous êtes " + aDescription + ".\n" + getExitString();
     }
     
     /**
@@ -69,7 +69,7 @@ public class Room
     public String getExitString()
     {
         StringBuilder vRes = new StringBuilder(40);
-        vRes.append("Exits : ");
+        vRes.append("Sorties : ");
         Set<String> vKeys = aExits.keySet();
         for(String vExit : vKeys)
         {
@@ -82,18 +82,35 @@ public class Room
     {
         aRoomList = new HashMap<String, Room>();
         
-        aRoomList.put("outside", new Room("outside the main entrance of the university", "Assets/Map/outside.jpg"));
-        aRoomList.put("theatre", new Room("in a lecture theatre", ""));
-        aRoomList.put("pub", new Room("in the campus pub", ""));
-        aRoomList.put("lab", new Room("in a computing lab", ""));
-        aRoomList.put("office", new Room("in the computing admin office", ""));
+        //Piece maison
+        aRoomList.put("jardin", new Room("devant chez vous, dans le jardin", "Assets/Map/outside.jpg"));
+        aRoomList.put("salon", new Room("dans votre lieu de vie, très agréable pour écouter les nouvelles à la radio", ""));
+        aRoomList.put("cuisine", new Room("dans votre cuisine très bien équipé", ""));
+        aRoomList.put("chambre", new Room("dans votre chambre : une pièce austère mais confortable", ""));
         
-        getRoom("outside").setExits(null, getRoom("theatre"), getRoom("lab"), getRoom("pub"), null, null);
-        getRoom("theatre").setExits(null, null, null, getRoom("office"), null, null);
-        getRoom("pub").setExits(null, getRoom("outside"), null, null, null, null);
-        getRoom("lab").setExits(getRoom("outside"), getRoom("office"), null, null, null, null);
-        getRoom("office").setExits(null, null, null, getRoom("lab"), null, null);
+        //Extérieur
+        aRoomList.put("rue", new Room("dans une grande rue très large mais personne ne s'y promène...", ""));
+        aRoomList.put("egouts", new Room("dans les égouts, un endroit sal et mal odorant", ""));
+        aRoomList.put("tour", new Room("dans la tour : certainement l'endroit le plus haut de la ville", ""));
+        aRoomList.put("bibliotheque", new Room("dans la Grande Bibliothèque : pièce refermant tous le savoir d'une civilisation", ""));
         
+        //Ministère
+        aRoomList.put("ministere", new Room("dans le hall du ministère : salle grise avec un bureau et un standardiste", ""));
+        aRoomList.put("bureau", new Room("dans le bureau du ministre orné de souvenir du coup d'état", ""));
+        
+        
+        getRoom("jardin").setExits(null, getRoom("rue"), null, getRoom("salon"), null, null);
+        getRoom("salon").setExits(null, getRoom("jardin"), getRoom("cuisine"), null, getRoom("chambre"), null);
+        getRoom("cuisine").setExits(getRoom("salon"), null, null, null, null, null);
+        getRoom("chambre").setExits(null, null, null, null, null, getRoom("salon"));
+        
+        getRoom("rue").setExits(null, getRoom("ministere"), null, getRoom("jardin"), getRoom("tour"), getRoom("egouts"));
+        getRoom("egouts").setExits(getRoom("bibliotheque"), null, null, null, getRoom("rue"), null);
+        getRoom("tour").setExits(null, null, null, null, null,  getRoom("rue"));
+        getRoom("bibliotheque").setExits(null, null, getRoom("egouts"), null, null,  null);
+        
+        getRoom("ministere").setExits(null, null, null, getRoom("rue"), getRoom("bureau"),  null);
+        getRoom("bureau").setExits(null, null, null, null, null, getRoom("ministere"));
     }
     
     public static Room getRoom(final String pId)
@@ -106,6 +123,6 @@ public class Room
      */
     public String getImageName()
     {
-    	return aImageName;
+        return aImageName;
     }
 } // Room

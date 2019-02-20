@@ -88,7 +88,7 @@ public class UserInterface implements ActionListener
         this.aHelpButton = new JButton("Aide");
         this.aHelpButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
-                aEngine.interpretCommand( "help" );
+                aEngine.interpretCommand( "aide" );
             }
         });
         

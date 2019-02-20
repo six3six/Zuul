@@ -30,8 +30,7 @@ public class GameEngine
     private void printWelcome()
     {
         aGui.println("Bienvenue dans Antisophia");
-        aGui.println("World of Zuul is a new, incredibly boring adventure game.");
-        aGui.println("Type 'help' if you need help.");
+        aGui.println("Entrez 'aide' si vous avez besoin d'aide");
         aGui.println(" ");
         printLocationInfo();
     }
@@ -41,10 +40,10 @@ public class GameEngine
      */
     private void printHelp()
     {
-        aGui.println("You are lost. You are alone.");
-        aGui.println("You wander around at the university");
+        aGui.println("Vous êtes chez dans un état totalitaire");
+        aGui.println("Votre but, renverser le gouvernement grace à la culture");
         aGui.println(" ");
-        aGui.println("Your command words are:");
+        aGui.println("Les commandes disponibles sont:");
         aGui.println(aParser.getCommandList());
     }
 
@@ -54,7 +53,7 @@ public class GameEngine
     private void createRooms()
     {
         Room.CreateRoom();
-        aCurrentRoom = Room.getRoom("outside");
+        aCurrentRoom = Room.getRoom("salon");
         
     }
 
@@ -65,17 +64,17 @@ public class GameEngine
     private boolean processCommand(final Command pCmd)
     {
         if(pCmd.isUnknown()) {
-            aGui.println("I don't know what you mean...");
+            aGui.println("Je ne comprends pas ce que vous voulez faire...");
             return false;
         }
-        if(pCmd.getCommandWord().equals("go")) this.goRoom(pCmd);
-        else if(pCmd.getCommandWord().equals("help")) this.printHelp();
-        else if(pCmd.getCommandWord().equals("quit")) this.quit(pCmd);
-        else if(pCmd.getCommandWord().equals("look")) look();
-        else if(pCmd.getCommandWord().equals("eat")) eat();
+        if(pCmd.getCommandWord().equals("aller")) this.goRoom(pCmd);
+        else if(pCmd.getCommandWord().equals("aide")) this.printHelp();
+        else if(pCmd.getCommandWord().equals("quitter")) this.quit(pCmd);
+        else if(pCmd.getCommandWord().equals("regarder")) look();
+        else if(pCmd.getCommandWord().equals("manger")) eat();
         else
         {
-            aGui.println("I don't know what you mean...");
+            aGui.println("Je ne comprends pas ce que vous voulez faire...");
             return true;
         }
 
@@ -95,7 +94,7 @@ public class GameEngine
     {
         if(pCmd.hasSecondWord())
         {
-            aGui.println("Quit what ?");
+            aGui.println("Qu'est-ce que vous voulez quitter ?");
         }
         endGame();
     }
@@ -107,22 +106,22 @@ public class GameEngine
     {
         if(!pCmd.hasSecondWord()) 
         {
-            aGui.println("Go where ?");
+            aGui.println("Où va-t-on ?");
             return;
         }
 
         Room vNextRoom = null;
         String vDirection = pCmd.getSecondWord();
 
-        if(vDirection.equals("north") && aCurrentRoom.getExit("north") != null) vNextRoom = aCurrentRoom.getExit("north");
-        else if(vDirection.equals("east") && aCurrentRoom.getExit("east") != null) vNextRoom = aCurrentRoom.getExit("east");
-        else if(vDirection.equals("south") && aCurrentRoom.getExit("south") != null) vNextRoom = aCurrentRoom.getExit("south");
-        else if(vDirection.equals("west") && aCurrentRoom.getExit("west") != null) vNextRoom = aCurrentRoom.getExit("west");
-        else if(vDirection.equals("top") && aCurrentRoom.getExit("top") != null) vNextRoom = aCurrentRoom.getExit("top");
-        else if(vDirection.equals("down") && aCurrentRoom.getExit("down") != null) vNextRoom = aCurrentRoom.getExit("down");
-        else if(vDirection.equals("north") || vDirection.equals("east") || vDirection.equals("south") || vDirection.equals("west") || vDirection.equals("top") || vDirection.equals("down")) System.out.println("There is no door !"); 
+        if(vDirection.equals("nord") && aCurrentRoom.getExit("nord") != null) vNextRoom = aCurrentRoom.getExit("nord");
+        else if(vDirection.equals("est") && aCurrentRoom.getExit("est") != null) vNextRoom = aCurrentRoom.getExit("est");
+        else if(vDirection.equals("sud") && aCurrentRoom.getExit("sud") != null) vNextRoom = aCurrentRoom.getExit("sud");
+        else if(vDirection.equals("ouest") && aCurrentRoom.getExit("ouest") != null) vNextRoom = aCurrentRoom.getExit("ouest");
+        else if(vDirection.equals("haut") && aCurrentRoom.getExit("haut") != null) vNextRoom = aCurrentRoom.getExit("haut");
+        else if(vDirection.equals("bas") && aCurrentRoom.getExit("bas") != null) vNextRoom = aCurrentRoom.getExit("bas");
+        else if(vDirection.equals("nord") || vDirection.equals("est") || vDirection.equals("sud") || vDirection.equals("ouest") || vDirection.equals("haut") || vDirection.equals("bas")) aGui.println("Il n'y a pas d'accès !"); 
 
-        else aGui.println("Unknown direction !");
+        else aGui.println("Direction inconnue !");
 
         if(vNextRoom != null)
         {
@@ -138,8 +137,7 @@ public class GameEngine
      */
     private void printLocationInfo()
     {
-        aGui.println("You are " + aCurrentRoom.getDescription());
-        aGui.print(aCurrentRoom.getExitString());
+        aGui.println(aCurrentRoom.getLongDescription());
         aGui.println("");
     }
 
@@ -150,12 +148,12 @@ public class GameEngine
 
     private void eat()
     {
-        aGui.println("You have eaten now and you are not hungry any more.");
+        aGui.println("Vous avez mangé et vous n'avez plus faim");
     }
     
     private void endGame()
     {
-        aGui.println("Thank you for playing.  Good bye.");
+        aGui.println("Merci d'avoir jouer, à bientot !");
         aGui.enable(false);
     }
 
