@@ -12,6 +12,7 @@ public class UserInterface implements ActionListener
     private JTextArea  aLog;
     private JLabel     aImage;
     private JButton    aHelpButton;
+    private JButton    aEatButton;
 
     /**
      * Construct a UserInterface. As a parameter, a Game Engine
@@ -92,6 +93,13 @@ public class UserInterface implements ActionListener
             }
         });
         
+        this.aEatButton = new JButton("Manger");
+        this.aEatButton.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                aEngine.interpretCommand( "manger" );
+            }
+        });
+        
         JPanel vContextPanel = new JPanel();
 
         vPanel.setLayout( new BorderLayout() );
@@ -101,6 +109,8 @@ public class UserInterface implements ActionListener
         
         vContextPanel.add( this.aEntryField, BorderLayout.NORTH );
         vContextPanel.add( this.aHelpButton, BorderLayout.SOUTH );
+        
+        vContextPanel.add( this.aEatButton, BorderLayout.EAST );
 
         this.aMyFrame.getContentPane().add( vPanel, BorderLayout.CENTER );
 

@@ -68,7 +68,7 @@ public class Room
      */
     public String getExitString()
     {
-        StringBuilder vRes = new StringBuilder(40);
+        StringBuilder vRes = new StringBuilder(10 + aExits.size()*10);
         vRes.append("Sorties : ");
         Set<String> vKeys = aExits.keySet();
         for(String vExit : vKeys)
