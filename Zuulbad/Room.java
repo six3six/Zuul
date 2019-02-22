@@ -104,19 +104,33 @@ public class Room
         aRoomList.put("ministere", new Room("dans le hall du ministère : salle grise avec un bureau et un standardiste", ""));
         aRoomList.put("bureau", new Room("dans le bureau du ministre orné de souvenir du coup d'état", ""));
         
+        getRoom("jardin").setExit("est", getRoom("rue"));
+        getRoom("jardin").setExit("ouest", getRoom("salon"));
         
-        getRoom("jardin").setExits(null, getRoom("rue"), null, getRoom("salon"), null, null);
-        getRoom("salon").setExits(null, getRoom("jardin"), getRoom("cuisine"), null, getRoom("chambre"), null);
-        getRoom("cuisine").setExits(getRoom("salon"), null, null, null, null, null);
-        getRoom("chambre").setExits(null, null, null, null, null, getRoom("salon"));
+        getRoom("salon").setExit("est", getRoom("jardin"));
+        getRoom("salon").setExit("sud", getRoom("cuisine"));
+        getRoom("salon").setExit("haut", getRoom("chambre"));
         
-        getRoom("rue").setExits(null, getRoom("ministere"), null, getRoom("jardin"), getRoom("tour"), getRoom("egouts"));
-        getRoom("egouts").setExits(getRoom("bibliotheque"), null, null, null, getRoom("rue"), null);
-        getRoom("tour").setExits(null, null, null, null, null,  getRoom("rue"));
-        getRoom("bibliotheque").setExits(null, null, getRoom("egouts"), null, null,  null);
+        getRoom("cuisine").setExit("nord", getRoom("salon"));
         
-        getRoom("ministere").setExits(null, null, null, getRoom("rue"), getRoom("bureau"),  null);
-        getRoom("bureau").setExits(null, null, null, null, null, getRoom("ministere"));
+        getRoom("chambre").setExit("bas", getRoom("salon"));
+        
+        getRoom("rue").setExit("ouest", getRoom("jardin"));
+        getRoom("rue").setExit("est", getRoom("ministere"));
+        getRoom("rue").setExit("bas", getRoom("egouts"));
+        getRoom("rue").setExit("haut", getRoom("tour"));
+        
+        getRoom("egouts").setExit("nord", getRoom("bibliotheque"));
+        getRoom("egouts").setExit("haut", getRoom("haut"));
+        
+        getRoom("tour").setExit("bas", getRoom("rue"));
+        
+        getRoom("bibliotheque").setExit("sud", getRoom("egouts"));
+        
+        getRoom("ministere").setExit("haut", getRoom("bureau"));
+        getRoom("ministere").setExit("ouest", getRoom("rue"));
+        
+        getRoom("bureau").setExit("bas", getRoom("ministere"));
     }
     
     /**
