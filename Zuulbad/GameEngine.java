@@ -17,6 +17,9 @@ public class GameEngine
         aParser = new Parser();
     }
     
+    /**
+     * Créé l'interface graphique
+     */
     public void setGUI(UserInterface userInterface)
     {
         aGui = userInterface;
@@ -81,6 +84,9 @@ public class GameEngine
         return false;
     }
     
+    /**
+     * Affiche puis commence le traitement de la commande entrée par l'utilisateur
+     */
     public void interpretCommand(String commandLine) 
     {
         aGui.println(commandLine);

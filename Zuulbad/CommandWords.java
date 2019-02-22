@@ -54,6 +54,9 @@ public class CommandWords
         System.out.println();
     }
     
+    /**
+     * @return Liste des commandes
+     */
     public String getCommandList()
     {
         StringBuilder vResult = new StringBuilder(sValidCommands.length * 10);

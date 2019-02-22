@@ -21,7 +21,7 @@ public class Room
     }
     
     /**
-     * @return déscription de la salle
+     * @return description de la salle
      */
     public String getDescription()
     {
@@ -57,7 +57,10 @@ public class Room
     {
         return aExits.get(pDirection);
     }
-    
+   
+    /**
+     * Description compléte
+     */
     public String getLongDescription()
     {
         return "Vous êtes " + aDescription + ".\n" + getExitString();
@@ -78,6 +81,9 @@ public class Room
         return vRes.toString();
     }
     
+    /**
+     * Créé les salles et les place en mémoires
+     */
     public static void CreateRoom()
     {
         aRoomList = new HashMap<String, Room>();
@@ -113,6 +119,9 @@ public class Room
         getRoom("bureau").setExits(null, null, null, null, null, getRoom("ministere"));
     }
     
+    /**
+     * Récupere la salle à la direction donnée
+     */
     public static Room getRoom(final String pId)
     {
         return aRoomList.get(pId);
