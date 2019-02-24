@@ -8,8 +8,7 @@ public class Game
      */
     public Game() 
     {
-		aEngine = new GameEngine();
-		aGui = new UserInterface(aEngine);
-		aEngine.setGUI(aGui);
+        aEngine = new GameEngine();
+        
     }
 }

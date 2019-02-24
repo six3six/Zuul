@@ -3,39 +3,21 @@
  */
 public class GameEngine
 {
-    private Room aCurrentRoom;
     private Parser aParser;
     private UserInterface aGui;
+    private GameModel aModel;
     
     /**
      * Contructeur de Game
      */
     public GameEngine()
     {
-        this.aCurrentRoom = null;
-        this.createRooms();
+        aModel = new GameModel();
+        aGui = new UserInterface(aModel, this);
+        aModel.addObserver(aGui);
         aParser = new Parser();
-    }
-    
-    /**
-     * Créé l'interface graphique
-     */
-    public void setGUI(UserInterface userInterface)
-    {
-        aGui = userInterface;
-        printWelcome();
-        aGui.showImage(aCurrentRoom.getImageName());
-    }
-
-    /**
-     * Affiche le message d'accueil du jeu
-     */
-    private void printWelcome()
-    {
-        aGui.println("Bienvenue dans Antisophia");
-        aGui.println("Entrez 'aide' si vous avez besoin d'aide");
-        aGui.println(" ");
-        printLocationInfo();
+        aGui.printWelcome();
+        aGui.update(aModel, null);
     }
 
     /**
@@ -43,21 +25,8 @@ public class GameEngine
      */
     private void printHelp()
     {
-        aGui.println("Vous êtes chez dans un état totalitaire");
-        aGui.println("Votre but, renverser le gouvernement grace à la culture");
-        aGui.println(" ");
-        aGui.println("Les commandes disponibles sont:");
+        aGui.printHelp();
         aGui.println(aParser.getCommandList());
-    }
-
-    /**
-     * Créé les pièces de la carte
-     */
-    private void createRooms()
-    {
-        Room.CreateRoom();
-        aCurrentRoom = Room.getRoom("salon");
-        
     }
 
     /**
@@ -110,31 +79,30 @@ public class GameEngine
      */
     private void goRoom(final Command pCmd)
     {
-        if(!pCmd.hasSecondWord()) 
-        {
+        if(!pCmd.hasSecondWord()) {
+            // if there is no second word, we don't know where to go...
             aGui.println("Où va-t-on ?");
             return;
         }
 
-        Room vNextRoom = null;
-        String vDirection = pCmd.getSecondWord();
+        String direction = pCmd.getSecondWord();
 
-        if(vDirection.equals("nord") && aCurrentRoom.getExit("nord") != null) vNextRoom = aCurrentRoom.getExit("nord");
-        else if(vDirection.equals("est") && aCurrentRoom.getExit("est") != null) vNextRoom = aCurrentRoom.getExit("est");
-        else if(vDirection.equals("sud") && aCurrentRoom.getExit("sud") != null) vNextRoom = aCurrentRoom.getExit("sud");
-        else if(vDirection.equals("ouest") && aCurrentRoom.getExit("ouest") != null) vNextRoom = aCurrentRoom.getExit("ouest");
-        else if(vDirection.equals("haut") && aCurrentRoom.getExit("haut") != null) vNextRoom = aCurrentRoom.getExit("haut");
-        else if(vDirection.equals("bas") && aCurrentRoom.getExit("bas") != null) vNextRoom = aCurrentRoom.getExit("bas");
-        else if(vDirection.equals("nord") || vDirection.equals("est") || vDirection.equals("sud") || vDirection.equals("ouest") || vDirection.equals("haut") || vDirection.equals("bas")) aGui.println("Il n'y a pas d'accès !"); 
-
-        else aGui.println("Direction inconnue !");
-
-        if(vNextRoom != null)
-        {
-            this.aCurrentRoom = vNextRoom;
-            if(aCurrentRoom.getImageName() != null)
-                aGui.showImage(aCurrentRoom.getImageName());
-            printLocationInfo();
+        // Try to leave current room.
+        Room nextRoom = null;
+        if(direction.equals("nord"))
+            nextRoom = aModel.getCurrentRoom().getExit("nord");
+        if(direction.equals("est"))
+            nextRoom = aModel.getCurrentRoom().getExit("est");
+        if(direction.equals("sud"))
+            nextRoom = aModel.getCurrentRoom().getExit("sud");
+        if(direction.equals("ouest"))
+            nextRoom = aModel.getCurrentRoom().getExit("ouest");
+        
+        if (nextRoom == null)
+            aGui.println("There is no door!");
+        else {
+            aModel.goRoom(nextRoom);
+            //printLocationInfo(); this is done automaically via the model event.
         }
     }
 
@@ -143,13 +111,12 @@ public class GameEngine
      */
     private void printLocationInfo()
     {
-        aGui.println(aCurrentRoom.getLongDescription());
-        aGui.println("");
+        aGui.printLocationInfo();
     }
 
     private void look()
     {
-        aGui.println(aCurrentRoom.getLongDescription());
+        aGui.printLongDescription();
     }
 
     private void eat()

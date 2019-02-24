@@ -3,9 +3,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.net.URL;
 import java.awt.image.*;
+import java.util.Observable;
+import java.util.Observer;
 
-public class UserInterface implements ActionListener
+public class UserInterface implements Observer, ActionListener
 {
+    private GameModel  aModel;
     private GameEngine aEngine;
     private JFrame     aMyFrame;
     private JTextField aEntryField;
@@ -21,8 +24,9 @@ public class UserInterface implements ActionListener
      * 
      * @param gameEngine  The GameEngine object implementing the game logic.
      */
-    public UserInterface( final GameEngine pGameEngine )
+    public UserInterface( final GameModel pGameModel, final GameEngine pGameEngine )
     {
+        this.aModel = pGameModel;
         this.aEngine = pGameEngine;
         this.createGUI();
     } // UserInterface(.)
@@ -70,7 +74,47 @@ public class UserInterface implements ActionListener
     } // enable(.)
 
     /**
-     * Set up graphical user interface.
+     * Affiche le message de bienvenue
+     */
+    public void printWelcome()
+    {
+        println("\n" + aModel.getWelcomeString() + "\n");
+    }
+
+    /**
+     * Affiche le nom de la piece
+     */
+    public void printLocationInfo()
+    {
+        println(aModel.getLocationInfo());
+    }
+
+    /**
+     * Affiche le message de fin
+     */
+    public void printGoodBye() 
+    {
+        println(aModel.getGoodByeString());
+    }
+
+    /**
+     * Affiche la description de la piece
+     */
+    public void printLongDescription() 
+    {
+        println(aModel.getLongDescription());
+    }
+
+    /**
+     * Affiche le message d'aide
+     */
+    public void printHelp()
+    {
+        println(aModel.getHelpString());
+    }
+
+    /**
+     * Met en place les éléments graphique
      */
     private void createGUI()
     {
@@ -85,39 +129,39 @@ public class UserInterface implements ActionListener
 
         JPanel vPanel = new JPanel();
         this.aImage = new JLabel();
-        
+
         this.aHelpButton = new JButton("Aide");
         this.aHelpButton.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                aEngine.interpretCommand( "aide" );
-            }
-        });
-        
+                public void mouseClicked(MouseEvent evt) {
+                    aEngine.interpretCommand( "aide" );
+                }
+            });
+
         this.aEatButton = new JButton("Manger");
         this.aEatButton.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                aEngine.interpretCommand( "manger" );
-            }
-        });
-        
+                public void mouseClicked(MouseEvent evt) {
+                    aEngine.interpretCommand( "manger" );
+                }
+            });
+
         JPanel vContextPanel = new JPanel();
 
         vPanel.setLayout( new BorderLayout() );
         vPanel.add( this.aImage, BorderLayout.NORTH );
         vPanel.add( vListScroller, BorderLayout.CENTER );
         vPanel.add( vContextPanel, BorderLayout.SOUTH );
-        
+
         vContextPanel.add( this.aEntryField, BorderLayout.NORTH );
         vContextPanel.add( this.aHelpButton, BorderLayout.SOUTH );
-        
+
         vContextPanel.add( this.aEatButton, BorderLayout.EAST );
 
         this.aMyFrame.getContentPane().add( vPanel, BorderLayout.CENTER );
 
         // add some event listeners to some components
         this.aMyFrame.addWindowListener( new WindowAdapter() {
-            public void windowClosing(WindowEvent e) { System.exit(0); }
-        } );
+                public void windowClosing(WindowEvent e) { System.exit(0); }
+            } );
 
         this.aEntryField.addActionListener( this );
 
@@ -125,6 +169,12 @@ public class UserInterface implements ActionListener
         this.aMyFrame.setVisible( true );
         this.aEntryField.requestFocus();
     } // createGUI()
+
+    public void update(Observable o, Object arg)
+    {
+        printLocationInfo();
+        showImage(aModel.getImageName());
+    }
 
     /**
      * Actionlistener interface for entry textfield.
