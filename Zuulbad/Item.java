@@ -9,13 +9,13 @@ public class Item
 {
     private int aPoid;
     private String aDescription;
-    private String aLongDescription;
+    private String aName;
     
-    public Item(final int pPoid, final String pDescription, final String pLongDescription)
+    public Item(final int pPoid, final String pDescription, final String pName)
     {
         this.aPoid = pPoid;
         this.aDescription = pDescription;
-        this.aLongDescription = pLongDescription;
+        this.aName = pName;
     }
     
     public int getPoid()
@@ -28,8 +28,8 @@ public class Item
         return this.aDescription;
     }
     
-    public String getLongDescription()
+    public String getName()
     {
-        return this.aLongDescription;
+        return this.aName;
     }
 }

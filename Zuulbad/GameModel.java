@@ -41,7 +41,7 @@ public class GameModel extends Observable
 
     public String getGoodByeString()
     {
-        return "Thank you for playing.  Good bye.";
+        return "Merci d'avoir joué, au revoir";
     }
 
     public String getHelpString()
@@ -52,10 +52,7 @@ public class GameModel extends Observable
 
     public String getLocationInfo() {
         return "Vous êtes " + getCurrentRoom().getDescription() + "\n" +
-        getCurrentRoom().getExitString();
-    }
-
-    public String getLongDescription() {
-        return "Vous êtes " + getCurrentRoom().getLongDescription();
+        getCurrentRoom().getExitString() + "\n" +
+        getCurrentRoom().getItemString();
     }
 }

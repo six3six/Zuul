@@ -118,7 +118,7 @@ public class GameEngine
 
     private void look()
     {
-        aGui.printLongDescription();
+        aGui.printLocationInfo();
     }
 
     private void eat()
