@@ -97,12 +97,14 @@ public class GameEngine
             nextRoom = aModel.getCurrentRoom().getExit("sud");
         if(direction.equals("ouest"))
             nextRoom = aModel.getCurrentRoom().getExit("ouest");
-        
+        if(direction.equals("haut"))
+            nextRoom = aModel.getCurrentRoom().getExit("haut");
+        if(direction.equals("bas"))
+            nextRoom = aModel.getCurrentRoom().getExit("bas");
         if (nextRoom == null)
-            aGui.println("There is no door!");
+            aGui.println("Vous foncez droit dans un mur...");
         else {
             aModel.goRoom(nextRoom);
-            //printLocationInfo(); this is done automaically via the model event.
         }
     }
 

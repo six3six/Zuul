@@ -9,6 +9,7 @@ public class Room
     private String aDescription;
     private HashMap<String, Room> aExits;
     private String aImageName;
+    private Item aItem;
     
     /**
      * Constructeur de room
@@ -79,6 +80,11 @@ public class Room
             vRes.append(" " + vExit);
         }
         return vRes.toString();
+    }
+    
+    public void addItem(final Item pItem)
+    {
+        aItem = pItem;
     }
     
     /**
