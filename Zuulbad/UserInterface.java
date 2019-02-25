@@ -55,7 +55,7 @@ public class UserInterface implements Observer, ActionListener
     {
         URL vImageURL = this.getClass().getClassLoader().getResource( pImageName );
         if ( vImageURL == null )
-            System.out.println( "image not found" );
+            println( "image not found" );
         else {
             ImageIcon vIcon = new ImageIcon( vImageURL );
             this.aImage.setIcon( vIcon );
@@ -95,14 +95,6 @@ public class UserInterface implements Observer, ActionListener
     public void printGoodBye() 
     {
         println(aModel.getGoodByeString());
-    }
-
-    /**
-     * Affiche la description de la piece
-     */
-    public void printLongDescription() 
-    {
-        println(aModel.getLongDescription());
     }
 
     /**

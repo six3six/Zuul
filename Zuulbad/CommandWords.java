@@ -44,14 +44,6 @@ public class CommandWords
     
     
     /**
-     * Affiche toute les commandes dans le terminal
-     */
-    public void showAll()
-    {
-        System.out.println(getCommandList());
-    }
-    
-    /**
      * @return Liste des commandes
      */
     public String getCommandList()

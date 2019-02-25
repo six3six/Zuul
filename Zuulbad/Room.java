@@ -9,7 +9,7 @@ public class Room
     private String aDescription;
     private HashMap<String, Room> aExits;
     private String aImageName;
-    private Item aItem;
+    private HashSet<Item> aItems;
     
     /**
      * Constructeur de room
@@ -18,7 +18,8 @@ public class Room
     {
         this.aDescription = pDescription;
         this.aImageName = pImage;
-        aExits = new HashMap<String, Room>();
+        this.aExits = new HashMap<String, Room>();
+        this.aItems = new HashSet<Item>();
     }
     
     /**
@@ -58,14 +59,6 @@ public class Room
     {
         return aExits.get(pDirection);
     }
-   
-    /**
-     * Description compléte
-     */
-    public String getLongDescription()
-    {
-        return "Vous êtes " + aDescription + ".\n" + getExitString();
-    }
     
     /**
      * Récupere la liste des salles disponibles
@@ -82,9 +75,23 @@ public class Room
         return vRes.toString();
     }
     
+    /**
+     * Récupere la liste des salles disponibles
+     */
+    public String getItemString()
+    {
+        StringBuilder vRes = new StringBuilder(10 + aItems.size()*10);
+        vRes.append("Items : ");
+        for(Item vItem : aItems)
+        {
+            vRes.append(" " + vItem.getName());
+        }
+        return vRes.toString();
+    }
+    
     public void addItem(final Item pItem)
     {
-        aItem = pItem;
+        aItems.add(pItem);
     }
     
     /**
