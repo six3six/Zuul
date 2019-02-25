@@ -10,4 +10,9 @@ public class Game
     {
         aEngine = new GameEngine();
     }
+    
+    public static void main(String[] args)
+    {
+        Game vGame = new Game();
+    }
 }
