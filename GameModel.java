@@ -1,14 +1,15 @@
 import java.util.Observable;
 
 /**
- * Write a description of class GameModel here.
+ * Model
  *
  * @author Louis DESPLANCHE
  * @version 1.0
  */
-public class GameModel extends Observable
+public class GameModel
 {
     private Room aCurrentRoom;
+    private UserInterface aGui;
     
     public GameModel()
     {
@@ -24,8 +25,7 @@ public class GameModel extends Observable
     public void goRoom(Room nextRoom)
     {
         aCurrentRoom = nextRoom;
-        setChanged();
-        notifyObservers();
+        sendSignal();
     }
 
     public String getImageName()
@@ -54,5 +54,17 @@ public class GameModel extends Observable
         return "Vous êtes " + getCurrentRoom().getDescription() + "\n" +
         getCurrentRoom().getExitString() + "\n" +
         getCurrentRoom().getItemString();
+    }
+
+    public void setGUI(final UserInterface pGui)
+    {
+        this.aGui = pGui;
+    }
+
+    //Signal au GUI qu'une modification vient d'être effectué
+    private void sendSignal()
+    {
+        if(aGui != null)
+            aGui.update();
     }
 }

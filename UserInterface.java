@@ -6,7 +6,12 @@ import java.awt.image.*;
 import java.util.Observable;
 import java.util.Observer;
 
-public class UserInterface implements Observer, ActionListener
+/**
+ * View
+ *
+ * @author Louis DESPLANCHE
+ */
+public class UserInterface implements ActionListener
 {
     private GameModel  aModel;
     private GameEngine aEngine;
@@ -22,7 +27,8 @@ public class UserInterface implements Observer, ActionListener
      * (an object processing and executing the game commands) is
      * needed.
      * 
-     * @param gameEngine  The GameEngine object implementing the game logic.
+     * @param pGameEngine  The GameEngine object implementing the game logic.
+     * @param pGameModel   The GameModem object implementing game messages
      */
     public UserInterface( final GameModel pGameModel, final GameEngine pGameEngine )
     {
@@ -162,7 +168,7 @@ public class UserInterface implements Observer, ActionListener
         this.aEntryField.requestFocus();
     } // createGUI()
 
-    public void update(Observable o, Object arg)
+    public void update()
     {
         printLocationInfo();
         showImage(aModel.getImageName());

@@ -14,10 +14,10 @@ public class GameEngine
     {
         aModel = new GameModel();
         aGui = new UserInterface(aModel, this);
-        aModel.addObserver(aGui);
+        aModel.setGUI(aGui);
         aParser = new Parser();
         aGui.printWelcome();
-        aGui.update(aModel, null);
+        aGui.update();
     }
 
     /**
@@ -31,7 +31,7 @@ public class GameEngine
 
     /**
      * Traite les commandes précédemment parser
-     * @param commande
+     * @param pCmd
      */
     private boolean processCommand(final Command pCmd)
     {
