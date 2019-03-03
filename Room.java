@@ -18,8 +18,8 @@ public class Room
     {
         this.aDescription = pDescription;
         this.aImageName = pImage;
-        this.aExits = new HashMap<String, Room>();
-        this.aItems = new HashSet<Item>();
+        this.aExits = new HashMap<>();
+        this.aItems = new HashSet<>();
     }
     
     /**
