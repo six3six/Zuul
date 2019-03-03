@@ -102,7 +102,7 @@ public class Room
         aRoomList = new HashMap<String, Room>();
         
         //Piece maison
-        aRoomList.put("jardin", new Room("devant chez vous, dans le jardin", "Assets/Map/outside.jpg"));
+        aRoomList.put("jardin", new Room("devant chez vous, dans le jardin", "Map/outside.jpg"));
         aRoomList.put("salon", new Room("dans votre lieu de vie, très agréable pour écouter les nouvelles à la radio", ""));
         aRoomList.put("cuisine", new Room("dans votre cuisine très bien équipé", ""));
         aRoomList.put("chambre", new Room("dans votre chambre : une pièce austère mais confortable", ""));
