@@ -140,7 +140,7 @@ public class Menu extends JFrame
         //TODO
     }
 
-    //Method mouseClicked for aBtnMnd
+    //Method mouselicked for aBtnMnd
     private void OuvrirEditMnd (MouseEvent evt) {
         //TODO
     }
