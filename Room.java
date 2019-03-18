@@ -102,19 +102,19 @@ public class Room
         aRoomList = new HashMap<String, Room>();
         
         //Piece maison
-        aRoomList.put("jardin", new Room("devant chez vous, dans le jardin", "Map/outside.jpg"));
-        aRoomList.put("salon", new Room("dans votre lieu de vie, très agréable pour écouter les nouvelles à la radio", ""));
+        aRoomList.put("jardin", new Room("devant chez vous, dans le jardin", "images/jardin.jpg"));
+        aRoomList.put("salon", new Room("dans votre lieu de vie, très agréable pour écouter les nouvelles à la radio", "images/salon.jpg"));
         aRoomList.put("cuisine", new Room("dans votre cuisine très bien équipé", ""));
-        aRoomList.put("chambre", new Room("dans votre chambre : une pièce austère mais confortable", ""));
+        aRoomList.put("chambre", new Room("dans votre chambre : une pièce austère mais confortable", "images/chambre.jpg"));
         
         //Extérieur
-        aRoomList.put("rue", new Room("dans une grande rue très large mais personne ne s'y promène...", ""));
+        aRoomList.put("rue", new Room("dans une grande rue très large mais personne ne s'y promène...", "images/rue.jpg"));
         aRoomList.put("egouts", new Room("dans les égouts, un endroit sal et mal odorant", ""));
-        aRoomList.put("tour", new Room("dans la tour : certainement l'endroit le plus haut de la ville", ""));
+        aRoomList.put("tour", new Room("dans la tour : certainement l'endroit le plus haut de la ville", "image/hall.jpg"));
         aRoomList.put("bibliotheque", new Room("dans la Grande Bibliothèque : pièce refermant tous le savoir d'une civilisation", ""));
         
         //Ministère
-        aRoomList.put("ministere", new Room("dans le hall du ministère : salle grise avec un bureau et un standardiste", ""));
+        aRoomList.put("ministere", new Room("dans le hall du ministère : salle grise avec un bureau et un standardiste", "images/hall.jpg"));
         aRoomList.put("bureau", new Room("dans le bureau du ministre orné de souvenir du coup d'état", ""));
         
         getRoom("jardin").setExit("est", getRoom("rue"));
