@@ -40,6 +40,7 @@ public class GameEngine
             return false;
         }
         if(pCmd.getCommandWord().equals("aller")) this.goRoom(pCmd);
+        else if(pCmd.getCommandWord().equals("retour")) this.goBack(pCmd);
         else if(pCmd.getCommandWord().equals("aide")) this.printHelp();
         else if(pCmd.getCommandWord().equals("quitter")) this.quit(pCmd);
         else if(pCmd.getCommandWord().equals("regarder")) look();
@@ -106,6 +107,11 @@ public class GameEngine
         else {
             aModel.goRoom(nextRoom);
         }
+    }
+
+    private void goBack(final Command pCmd)
+    {
+        aModel.goRoom(aModel.getPreviousRoom());
     }
 
     /**
