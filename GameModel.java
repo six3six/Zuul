@@ -1,4 +1,5 @@
 import java.util.Observable;
+import java.util.Stack;
 
 /**
  * Model
@@ -9,14 +10,18 @@ import java.util.Observable;
 public class GameModel
 {
     private Room aCurrentRoom;
-    private Room aPreviousRoom;
+    private Stack<Room> aPreviousRooms;
     private UserInterface aGui;
+
+    static private Room sStartRoom;
     
     public GameModel()
     {
         Room.CreateRoom();
-        aCurrentRoom = Room.getRoom("jardin");
-        aPreviousRoom = Room.getRoom("jardin");
+
+        sStartRoom = Room.getRoom("jardin");
+        aCurrentRoom = sStartRoom;
+        aPreviousRooms = new Stack<>();
     }
 
     public Room getCurrentRoom()
@@ -26,12 +31,19 @@ public class GameModel
 
     public Room getPreviousRoom()
     {
-        return aPreviousRoom;
+        return aPreviousRooms.peek();
+    }
+
+    public void goBack()
+    {
+        if(!aPreviousRooms.empty()) aCurrentRoom = aPreviousRooms.pop();
+        else aCurrentRoom = sStartRoom;
+        sendSignal();
     }
 
     public void goRoom(Room nextRoom)
     {
-        aPreviousRoom = aCurrentRoom;
+        aPreviousRooms.push(aCurrentRoom);
         aCurrentRoom = nextRoom;
         sendSignal();
     }

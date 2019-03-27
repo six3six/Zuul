@@ -111,7 +111,7 @@ public class GameEngine
 
     private void goBack(final Command pCmd)
     {
-        aModel.goRoom(aModel.getPreviousRoom());
+        aModel.goBack();
     }
 
     /**
