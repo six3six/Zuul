@@ -9,12 +9,14 @@ import java.util.Observable;
 public class GameModel
 {
     private Room aCurrentRoom;
+    private Room aPreviousRoom;
     private UserInterface aGui;
     
     public GameModel()
     {
         Room.CreateRoom();
         aCurrentRoom = Room.getRoom("jardin");
+        aPreviousRoom = Room.getRoom("jardin");
     }
 
     public Room getCurrentRoom()
@@ -22,8 +24,14 @@ public class GameModel
         return aCurrentRoom;
     }
 
+    public Room getPreviousRoom()
+    {
+        return aPreviousRoom;
+    }
+
     public void goRoom(Room nextRoom)
     {
+        aPreviousRoom = aCurrentRoom;
         aCurrentRoom = nextRoom;
         sendSignal();
     }
