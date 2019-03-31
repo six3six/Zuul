@@ -109,6 +109,10 @@ public class GameEngine
         }
     }
 
+    /**
+     * Retourne en arrière
+     * @param pCmd
+     */
     private void goBack(final Command pCmd)
     {
         aModel.goBack();
@@ -122,16 +126,25 @@ public class GameEngine
         aGui.printLocationInfo();
     }
 
+    /**
+     * Affiche les informations de la pièce
+     */
     private void look()
     {
         aGui.printLocationInfo();
     }
 
+    /**
+     *
+     */
     private void eat()
     {
         aGui.println("Vous avez mangé et vous n'avez plus faim");
     }
-    
+
+    /**
+     * Quitte le jeu
+     */
     private void endGame()
     {
         aGui.println("Merci d'avoir jouer, à bientot !");

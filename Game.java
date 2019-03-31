@@ -1,3 +1,6 @@
+/**
+ * @author Louis DEPSLANCHE
+ */
 public class Game
 {
 	private UserInterface aGui;
@@ -10,7 +13,11 @@ public class Game
     {
         aEngine = new GameEngine();
     }
-    
+
+    /**
+     * Lance le jeu
+     * @param args
+     */
     public static void main(String[] args)
     {
         Game vGame = new Game();
