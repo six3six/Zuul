@@ -96,14 +96,6 @@ public class UserInterface implements ActionListener
     }
 
     /**
-     * Affiche le message de fin
-     */
-    public void printGoodBye() 
-    {
-        println(aModel.getGoodByeString());
-    }
-
-    /**
      * Affiche le message d'aide
      */
     public void printHelp()
@@ -168,6 +160,9 @@ public class UserInterface implements ActionListener
         this.aEntryField.requestFocus();
     } // createGUI()
 
+    /**
+     * Met a jour l'interface utilisateur
+     */
     public void update()
     {
         printLocationInfo();

@@ -1,3 +1,6 @@
+import java.io.File;
+import java.util.Scanner;
+
 /**
  * @author Louis DESPLANCHE
  */
@@ -43,8 +46,9 @@ public class GameEngine
         else if(pCmd.getCommandWord().equals("retour")) this.goBack(pCmd);
         else if(pCmd.getCommandWord().equals("aide")) this.printHelp();
         else if(pCmd.getCommandWord().equals("quitter")) this.quit(pCmd);
-        else if(pCmd.getCommandWord().equals("regarder")) look();
-        else if(pCmd.getCommandWord().equals("manger")) eat();
+        else if(pCmd.getCommandWord().equals("regarder")) this.look();
+        else if(pCmd.getCommandWord().equals("manger")) this.eat();
+        else if(pCmd.getCommandWord().equals("test")) test(pCmd);
         else
         {
             aGui.println("Je ne comprends pas ce que vous voulez faire...");
@@ -119,14 +123,6 @@ public class GameEngine
     }
 
     /**
-     * Affiche les pièces disponibles
-     */
-    private void printLocationInfo()
-    {
-        aGui.printLocationInfo();
-    }
-
-    /**
      * Affiche les informations de la pièce
      */
     private void look()
@@ -135,11 +131,37 @@ public class GameEngine
     }
 
     /**
-     *
+     * Mange
      */
     private void eat()
     {
         aGui.println("Vous avez mangé et vous n'avez plus faim");
+    }
+
+    private void test(final Command pCmd) {
+        final String extension = "txt";
+        if(!pCmd.hasSecondWord()) {
+            // if there is no second word, we don't know where to go...
+            aGui.println("Que vouler-vous tester ?");
+            return;
+        }
+
+        File vFile = new File(pCmd.getSecondWord() + "." + extension);
+        if(!vFile.exists()) {
+            aGui.println("Aucun fichier de test : " + pCmd.getSecondWord() + ".txt");
+            return;
+        }
+        Scanner vScanner;
+        try {
+            vScanner = new Scanner(vFile);
+            while (vScanner.hasNext()) {
+                String line = vScanner.nextLine();
+                if(line.replaceAll(" ", "").replaceAll("\t", "").startsWith("#")) continue;
+                interpretCommand(line);
+            }
+        }
+        catch (Exception err) {
+        }
     }
 
     /**

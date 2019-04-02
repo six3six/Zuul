@@ -29,11 +29,6 @@ public class GameModel
         return aCurrentRoom;
     }
 
-    public Room getPreviousRoom()
-    {
-        return aPreviousRooms.peek();
-    }
-
     public void goBack()
     {
         if(!aPreviousRooms.empty()) aCurrentRoom = aPreviousRooms.pop();
@@ -57,11 +52,6 @@ public class GameModel
     {
         return "Bienvenue dans Antisophia" + "\n" + 
         "Si besoin, appuyez sur 'Aide' \n";
-    }
-
-    public String getGoodByeString()
-    {
-        return "Merci d'avoir joué, au revoir";
     }
 
     public String getHelpString()

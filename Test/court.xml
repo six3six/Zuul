@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE TestFile SYSTEM "test.dtd">
+<TestFile initialstate="true">
+    <TestOp>
+        <Command>manger</Command>
+        <Return checkreturn="false"></Return>
+        <Command>aller nord</Command>
+        <Return checkreturn="false"></Return>
+    </TestOp>
+</TestFile>
