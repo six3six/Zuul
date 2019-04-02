@@ -1,6 +1,0 @@
-<!ELEMENT TestFile (TestOp*)>
-    <!ATTLIST TestFile initialstate (true|false) false>
-    <!ELEMENT TestOp (Command, Return)>
-        <!ELEMENT Command (#PCDATA)>
-        <!ELEMENT Return (#PCDATA)>
-            <!ATTLIST Return checkreturn (true|false) true>

@@ -1,4 +1,13 @@
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -139,29 +148,36 @@ public class GameEngine
     }
 
     private void test(final Command pCmd) {
-        final String extension = "txt";
+        final String extension = "xml";
         if(!pCmd.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
             aGui.println("Que vouler-vous tester ?");
             return;
         }
 
-        File vFile = new File(pCmd.getSecondWord() + "." + extension);
-        if(!vFile.exists()) {
-            aGui.println("Aucun fichier de test : " + pCmd.getSecondWord() + ".txt");
-            return;
-        }
-        Scanner vScanner;
+        boolean vInitialState = false;
+
+        File vFile = new File("Test/" + pCmd.getSecondWord() + "." + extension);
         try {
-            vScanner = new Scanner(vFile);
-            while (vScanner.hasNext()) {
-                String line = vScanner.nextLine();
-                if(line.replaceAll(" ", "").replaceAll("\t", "").startsWith("#")) continue;
-                interpretCommand(line);
-            }
+            final DocumentBuilderFactory vFactory = DocumentBuilderFactory.newInstance();
+            vFactory.setValidating(false);
+            final DocumentBuilder vBuilder = vFactory.newDocumentBuilder();
+            final Document vDocument= vBuilder.parse(vFile);
+            final Element vRacine = vDocument.getDocumentElement();
+            if(vRacine.hasAttribute("useInitialState")) vInitialState = vRacine.getAttribute("useInitialState").equals("true");
+
+            vRacine.getChildNodes();
         }
-        catch (Exception err) {
+        catch (final ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (final SAXException e) {
+            e.printStackTrace();
+        } catch (final FileNotFoundException e) {
+            aGui.println("Fichier non trouvé : " + pCmd.getSecondWord() + "." + extension);
+        } catch (final IOException e) {
+            e.printStackTrace();
         }
+
     }
 
     /**
