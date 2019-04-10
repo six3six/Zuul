@@ -59,6 +59,14 @@ public class Room
     {
         return aExits.get(pDirection);
     }
+
+    /**
+     *
+     * @return Liste les sorties de la piece associées aux point cardinaux
+     */
+    public HashMap<String, Room> getExits() {
+        return aExits;
+    }
     
     /**
      * Récupere la liste des salles disponibles

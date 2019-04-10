@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Observable;
 import java.util.Stack;
 
@@ -69,6 +70,10 @@ public class GameModel
     public void setGUI(final UserInterface pGui)
     {
         this.aGui = pGui;
+    }
+
+    public boolean isExit(final String pDir){
+        return this.aCurrentRoom.getExit(pDir) != null;
     }
 
     //Signal au GUI qu'une modification vient d'être effectué
