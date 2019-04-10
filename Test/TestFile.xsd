@@ -10,16 +10,13 @@
     </xs:element>
 
 
-    
+
     <xs:element name="TestOp">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="Command" type="xs:string" />
-                <xs:element name="Return" >
-                    <xs:complexType>
-                        <xs:attribute name="checkReturn" type="xs:boolean" default="true" />
-                    </xs:complexType>
-                </xs:element>
+                <xs:element name="Return" type="xs:string" />
+                <xs:element type="xs:boolean" name="CheckReturn"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE TestFile SYSTEM "test.dtd">
-<TestFile>
+<TestFile useInitialState="true" xs:noNamespaceSchemaLocation="TestFile.xsd"  xmlns:xs="http://www.w3.org/2001/XMLSchema-instance">
+    <TestOp>
+        <Command>manger</Command>
+        <Return></Return>
+        <CheckReturn>false</CheckReturn>
+    </TestOp>
 
+    <TestOp>
+        <Command>aller nord</Command>
+        <Return>test</Return>
+        <CheckReturn>true</CheckReturn>
+    </TestOp>
 </TestFile>

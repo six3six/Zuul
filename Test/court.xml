@@ -2,11 +2,13 @@
 <TestFile useInitialState="true" xs:noNamespaceSchemaLocation="TestFile.xsd"  xmlns:xs="http://www.w3.org/2001/XMLSchema-instance">
     <TestOp>
         <Command>manger</Command>
-        <Return checkReturn="false"></Return>
+        <Return></Return>
+        <CheckReturn>false</CheckReturn>
     </TestOp>
 
     <TestOp>
         <Command>aller nord</Command>
-        <Return checkReturn="false"></Return>
+        <Return>test</Return>
+        <CheckReturn>true</CheckReturn>
     </TestOp>
 </TestFile>

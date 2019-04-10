@@ -1,5 +1,7 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -18,7 +20,7 @@ public class GameEngine
     private Parser aParser;
     private UserInterface aGui;
     private GameModel aModel;
-    
+
     /**
      * Contructeur de Game
      */
@@ -66,11 +68,11 @@ public class GameEngine
 
         return false;
     }
-    
+
     /**
      * Affiche puis commence le traitement de la commande entrée par l'utilisateur
      */
-    public void interpretCommand(String commandLine) 
+    public void interpretCommand(String commandLine)
     {
         aGui.println(commandLine);
         processCommand(aParser.getCommand(commandLine));
@@ -166,7 +168,26 @@ public class GameEngine
             final Element vRacine = vDocument.getDocumentElement();
             if(vRacine.hasAttribute("useInitialState")) vInitialState = vRacine.getAttribute("useInitialState").equals("true");
 
-            vRacine.getChildNodes();
+            NodeList vOps = vRacine.getChildNodes();
+            for(int vOpIndex=0; vOpIndex<vOps.getLength(); vOpIndex++)
+            {
+                NodeList vOpElements = vOps.item(vOpIndex).getChildNodes();
+                String vCommand = null;
+                String vResponse = null;
+                boolean vCheckReturn = true;
+                for(int vElemIndex=0; vElemIndex<vOpElements.getLength(); vElemIndex++)
+                {
+                    Node vElem = vOpElements.item(vElemIndex);
+                    if(vElem.getNodeName().equals("Command")) vCommand = vElem.getTextContent();
+                    if(vElem.getNodeName().equals("Return")) vResponse = vElem.getTextContent();
+                    if(vElem.getNodeName().equals("CheckReturn")) vCheckReturn = vElem.getTextContent().equals("true");
+                }
+                if(vCommand!=null)
+                {
+                    interpretCommand(vCommand);
+                }
+            }
+
         }
         catch (final ParserConfigurationException e) {
             e.printStackTrace();
