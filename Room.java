@@ -142,7 +142,7 @@ public class Room
         getRoom("rue").setExit("haut", getRoom("tour"));
         
         getRoom("egouts").setExit("nord", getRoom("bibliotheque"));
-        getRoom("egouts").setExit("haut", getRoom("haut"));
+        getRoom("egouts").setExit("haut", getRoom("rue"));
         
         getRoom("tour").setExit("bas", getRoom("rue"));
         
