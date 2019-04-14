@@ -105,6 +105,29 @@ public class GameModel
     }
 
     /**
+     * Ajoute un objet au joueur
+     * @param pItem
+     */
+    public void addItem(final Item pItem) {
+        this.aPlayer.setItem(pItem);
+    }
+
+    /**
+     * Enleve un objet au joueur
+     */
+    public void removeItem() {
+        this.aPlayer.setItem(null);
+    }
+
+    /**
+     * Recupere l'objet du joueur
+     * @return
+     */
+    public Item getItem() {
+        return this.aPlayer.getItem();
+    }
+
+    /**
      * Signal au GUI qu'une modification vient d'être effectué
      */
     private void sendSignal() {

@@ -56,7 +56,9 @@ public class GameEngine
         else if(pCmd.getCommandWord().equals("quitter")) this.quit(pCmd);
         else if(pCmd.getCommandWord().equals("regarder")) this.look();
         else if(pCmd.getCommandWord().equals("manger")) this.eat();
-        else if(pCmd.getCommandWord().equals("test")) test(pCmd);
+        else if(pCmd.getCommandWord().equals("test")) this.test(pCmd);
+        else if(pCmd.getCommandWord().equals("prendre")) this.take(pCmd);
+        else if(pCmd.getCommandWord().equals("jeter")) this.drop(pCmd);
         else
         {
             aGui.println("Je ne comprends pas ce que vous voulez faire...");
@@ -140,6 +142,34 @@ public class GameEngine
     private void eat()
     {
         aGui.println("Vous avez mangé et vous n'avez plus faim");
+    }
+
+    /**
+     * Prend un Item
+     */
+    private void take(final Command pCmd) {
+        if(!pCmd.hasSecondWord()) {
+            // if there is no second word, we don't know where to go...
+            aGui.println("Prendre quoi ?");
+            return;
+        }
+
+        Item vItem = aModel.getCurrentRoom().getItem(pCmd.getSecondWord());
+        if(vItem == null) {
+            aGui.println("L'objet que vous avez tenté de prendre n'existe pas...");
+            return;
+        }
+
+        aModel.addItem(vItem);
+        aModel.getCurrentRoom().removeItem(vItem);
+    }
+
+    /**
+     * Jete un Item
+     */
+    private void drop(final Command pCmd) {
+        aModel.getCurrentRoom().addItem(aModel.getItem());
+        aModel.removeItem();
     }
 
     /**

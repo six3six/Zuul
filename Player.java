@@ -9,12 +9,19 @@ public class Player {
     private Room aCurrentRoom;
     private Stack<Room> aPreviousRooms;
     private String aNom;
+    private Item aItem;
 
-    public Player(String pNom, Room pCurrentRoom)
+    public Player(String pNom, Room pCurrentRoom, Item pItem)
     {
         this.aNom = pNom;
         this.aCurrentRoom = pCurrentRoom;
         this.aPreviousRooms = new Stack<>();
+        this.aItem = pItem;
+    }
+
+    public Player(String pNom, Room pCurrentRoom)
+    {
+        this("Player 1", pCurrentRoom, null);
     }
 
     public Player(Room pCurrentRoom)
@@ -28,6 +35,14 @@ public class Player {
      */
     public Room getCurrentRoom() {
         return this.aCurrentRoom;
+    }
+
+    /**
+     * Recupere l'item
+     * @return
+     */
+    public Item getItem() {
+        return this.aItem;
     }
 
     /**
@@ -55,6 +70,14 @@ public class Player {
     public void goBack()
     {
         if(!aPreviousRooms.empty()) move(aPreviousRooms.pop());
+    }
+
+    /**
+     * Change l'item
+     * @param pItem
+     */
+    public void setItem(final Item pItem) {
+        this.aItem = pItem;
     }
 
     /**

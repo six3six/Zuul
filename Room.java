@@ -92,16 +92,50 @@ public class Room
         }
         return vRes.toString();
     }
-    
+
+    /**
+     * Ajoute un item à la list des objets
+     * @param pItem
+     */
     public void addItem(final Item pItem) {
         aItems.add(pItem);
+    }
+
+    /**
+     * Retire un objet à la liste des objets
+     * @param pItem
+     */
+    public void removeItem(final Item pItem) {
+        aItems.remove(pItem);
+    }
+
+    /**
+     * Recupere la liste des Items de la pièce
+     * @return
+     */
+    public HashSet<Item> getItems() {
+        return this.aItems;
+    }
+
+    /**
+     * Cherche l'item par son nom
+     * Si aucun item ne correspond alors la fonction retourne null
+     * @param pName nom de l'item recherché
+     * @return
+     */
+    public Item getItem(final String pName) {
+        for ( Item item: this.aItems) {
+            if(item.getName().toLowerCase().equals(pName.toLowerCase())) return item;
+        }
+
+        return null;
     }
     
     /**
      * Créé les salles et les place en mémoires
      */
     public static void CreateRoom() {
-        aRoomList = new HashMap<String, Room>();
+        aRoomList = new HashMap<>();
         
         //Piece maison
         aRoomList.put("jardin", new Room("devant chez vous, dans le jardin", "images/jardin.jpg"));
@@ -121,6 +155,7 @@ public class Room
         
         getRoom("jardin").setExit("est", getRoom("rue"));
         getRoom("jardin").setExit("ouest", getRoom("salon"));
+        getRoom("jardin").addItem(new Item(0,"Journal Officiel", "Journal"));
         
         getRoom("salon").setExit("est", getRoom("jardin"));
         getRoom("salon").setExit("sud", getRoom("cuisine"));
