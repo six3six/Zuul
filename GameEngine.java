@@ -150,21 +150,55 @@ public class GameEngine
     }
 
     private void test(final Command pCmd) {
-        final String extension = "xml";
         if(!pCmd.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
             aGui.println("Que vouler-vous tester ?");
             return;
         }
 
+
+        //Les extensions sont trié par ordre de priorité
+        String[] extensions = {".txt", ".xml", ""};
+        File vFile = null;
+        for (String extension: extensions) {
+            vFile = new File("Test/" + pCmd.getSecondWord() + extension);
+            if (vFile.exists()) break;
+            else vFile = null;
+        }
+
+        if(vFile == null) {
+            aGui.println("Fichier non trouvé : " + pCmd.getSecondWord());
+            return;
+        }
+
+        if(vFile.getPath().contains(".xml")) runXMLTest(vFile);
+        else runTXTTest(vFile);
+
+    }
+    private void runTXTTest(final File pFile)
+    {
+        Scanner vSc;
+        try { // pour "essayer" les instructions suivantes
+            vSc = new Scanner(pFile);
+            while ( vSc.hasNextLine() ) {
+                String vLigne = vSc.nextLine();
+                interpretCommand(vLigne);
+            } // while
+        } // try
+        catch ( final FileNotFoundException pFNFE ) {
+            // traitement en cas d'exception
+        } // catch
+    } // lecture
+
+    private void runXMLTest(final File pFile)
+    {
         boolean vInitialState = false;
 
-        File vFile = new File("Test/" + pCmd.getSecondWord() + "." + extension);
         try {
             final DocumentBuilderFactory vFactory = DocumentBuilderFactory.newInstance();
             vFactory.setValidating(false);
             final DocumentBuilder vBuilder = vFactory.newDocumentBuilder();
-            final Document vDocument= vBuilder.parse(vFile);
+            final Document vDocument= vBuilder.parse(pFile);
             final Element vRacine = vDocument.getDocumentElement();
             if(vRacine.hasAttribute("useInitialState")) vInitialState = vRacine.getAttribute("useInitialState").equals("true");
 
@@ -194,11 +228,10 @@ public class GameEngine
         } catch (final SAXException e) {
             e.printStackTrace();
         } catch (final FileNotFoundException e) {
-            aGui.println("Fichier non trouvé : " + pCmd.getSecondWord() + "." + extension);
+            e.printStackTrace();
         } catch (final IOException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
