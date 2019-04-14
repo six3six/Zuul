@@ -109,22 +109,22 @@ public class GameModel
      * @param pItem
      */
     public void addItem(final Item pItem) {
-        this.aPlayer.setItem(pItem);
+        this.aPlayer.addItem(pItem);
     }
 
     /**
      * Enleve un objet au joueur
      */
-    public void removeItem() {
-        this.aPlayer.setItem(null);
+    public void removeItem(final Item pItem) {
+        this.aPlayer.removeItem(pItem);
     }
 
     /**
-     * Recupere l'objet du joueur
+     * Recupere un objet du joueur
      * @return
      */
-    public Item getItem() {
-        return this.aPlayer.getItem();
+    public Item getItem(final String pName) {
+        return this.aPlayer.getItem(pName);
     }
 
     /**

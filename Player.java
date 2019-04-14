@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.List;
 import java.util.Stack;
 
@@ -9,19 +10,14 @@ public class Player {
     private Room aCurrentRoom;
     private Stack<Room> aPreviousRooms;
     private String aNom;
-    private Item aItem;
+    private HashSet<Item> aItems;
 
-    public Player(String pNom, Room pCurrentRoom, Item pItem)
+    public Player(String pNom, Room pCurrentRoom)
     {
         this.aNom = pNom;
         this.aCurrentRoom = pCurrentRoom;
         this.aPreviousRooms = new Stack<>();
-        this.aItem = pItem;
-    }
-
-    public Player(String pNom, Room pCurrentRoom)
-    {
-        this("Player 1", pCurrentRoom, null);
+        this.aItems = new HashSet<>();
     }
 
     public Player(Room pCurrentRoom)
@@ -38,11 +34,17 @@ public class Player {
     }
 
     /**
-     * Recupere l'item
+     * Cherche l'item par son nom
+     * Si aucun item ne correspond alors la fonction retourne null
+     * @param pName nom de l'item recherché
      * @return
      */
-    public Item getItem() {
-        return this.aItem;
+    public Item getItem(final String pName) {
+        for ( Item item: this.aItems) {
+            if(item.getName().toLowerCase().equals(pName.toLowerCase())) return item;
+        }
+
+        return null;
     }
 
     /**
@@ -73,11 +75,19 @@ public class Player {
     }
 
     /**
-     * Change l'item
+     * Ajoute un item
      * @param pItem
      */
-    public void setItem(final Item pItem) {
-        this.aItem = pItem;
+    public void addItem(final Item pItem) {
+        this.aItems.add(pItem);
+    }
+
+    /**
+     * Retire un item
+     * @param pItem
+     */
+    public void removeItem(final Item pItem) {
+        this.aItems.remove(pItem);
     }
 
     /**

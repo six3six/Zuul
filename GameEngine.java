@@ -168,9 +168,22 @@ public class GameEngine
      * Jete un Item
      */
     private void drop(final Command pCmd) {
-        aModel.getCurrentRoom().addItem(aModel.getItem());
-        aModel.removeItem();
+        if(!pCmd.hasSecondWord()) {
+            // if there is no second word, we don't know where to go...
+            aGui.println("Jeter quoi ?");
+            return;
+        }
+
+        Item vItem = aModel.getItem(pCmd.getSecondWord());
+        if(vItem == null) {
+            aGui.println("L'objet que vous avez tenté de jeter n'existe pas...");
+            return;
+        }
+
+        aModel.getCurrentRoom().addItem(vItem);
+        aModel.removeItem(vItem);
     }
+
 
     /**
      * Commande de test
