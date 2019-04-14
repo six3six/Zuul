@@ -14,8 +14,7 @@ public class Room
     /**
      * Constructeur de room
      */
-    public Room(final String pDescription, String pImage)
-    {
+    public Room(final String pDescription, String pImage) {
         this.aDescription = pDescription;
         this.aImageName = pImage;
         this.aExits = new HashMap<>();
@@ -34,8 +33,7 @@ public class Room
     * Paramètre toutes les salles voisines
     */
     public void setExits(final Room pNorthExit, final Room pEastExit, final Room pSouthExit,
-        final Room pWestExit, final Room pTopExit, final Room pDownExit)
-    {
+        final Room pWestExit, final Room pTopExit, final Room pDownExit) {
         if(pNorthExit != null) aExits.put("nord", pNorthExit);
         if(pEastExit != null) aExits.put("est", pEastExit);
         if(pSouthExit != null) aExits.put("sud", pSouthExit);
@@ -71,8 +69,7 @@ public class Room
     /**
      * Récupere la liste des salles disponibles
      */
-    public String getExitString()
-    {
+    public String getExitString() {
         StringBuilder vRes = new StringBuilder(10 + aExits.size()*10);
         vRes.append("Sorties : ");
         Set<String> vKeys = aExits.keySet();
@@ -86,8 +83,7 @@ public class Room
     /**
      * Récupere la liste des salles disponibles
      */
-    public String getItemString()
-    {
+    public String getItemString() {
         StringBuilder vRes = new StringBuilder(10 + aItems.size()*10);
         vRes.append("Items : ");
         for(Item vItem : aItems)
@@ -97,16 +93,14 @@ public class Room
         return vRes.toString();
     }
     
-    public void addItem(final Item pItem)
-    {
+    public void addItem(final Item pItem) {
         aItems.add(pItem);
     }
     
     /**
      * Créé les salles et les place en mémoires
      */
-    public static void CreateRoom()
-    {
+    public static void CreateRoom() {
         aRoomList = new HashMap<String, Room>();
         
         //Piece maison
@@ -157,16 +151,14 @@ public class Room
     /**
      * Récupere la salle à la direction donnée
      */
-    public static Room getRoom(final String pId)
-    {
+    public static Room getRoom(final String pId) {
         return aRoomList.get(pId);
     }
     
     /**
      * Return a string describing the room's image name
      */
-    public String getImageName()
-    {
+    public String getImageName() {
         return aImageName;
     }
 } // Room

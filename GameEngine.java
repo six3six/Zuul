@@ -24,8 +24,7 @@ public class GameEngine
     /**
      * Contructeur de Game
      */
-    public GameEngine()
-    {
+    public GameEngine() {
         aModel = new GameModel();
         aGui = new UserInterface(aModel, this);
         aModel.setGUI(aGui);
@@ -37,8 +36,7 @@ public class GameEngine
     /**
      * Affiche l'aide
      */
-    private void printHelp()
-    {
+    private void printHelp() {
         aGui.printHelp();
         aGui.println(aParser.getCommandList());
     }
@@ -47,14 +45,13 @@ public class GameEngine
      * Traite les commandes précédemment parser
      * @param pCmd
      */
-    private boolean processCommand(final Command pCmd)
-    {
+    private boolean processCommand(final Command pCmd) {
         if(pCmd.isUnknown()) {
             aGui.println("Je ne comprends pas ce que vous voulez faire...");
             return false;
         }
         if(pCmd.getCommandWord().equals("aller")) this.goRoom(pCmd);
-        else if(pCmd.getCommandWord().equals("retour")) this.goBack(pCmd);
+        else if(pCmd.getCommandWord().equals("retour")) this.goBack();
         else if(pCmd.getCommandWord().equals("aide")) this.printHelp();
         else if(pCmd.getCommandWord().equals("quitter")) this.quit(pCmd);
         else if(pCmd.getCommandWord().equals("regarder")) this.look();
@@ -65,15 +62,13 @@ public class GameEngine
             aGui.println("Je ne comprends pas ce que vous voulez faire...");
             return true;
         }
-
         return false;
     }
 
     /**
      * Affiche puis commence le traitement de la commande entrée par l'utilisateur
      */
-    public void interpretCommand(String commandLine)
-    {
+    public void interpretCommand(String commandLine) {
         aGui.println(commandLine);
         processCommand(aParser.getCommand(commandLine));
     }
@@ -81,8 +76,7 @@ public class GameEngine
     /**
      * Quitte le jeu
      */
-    private void quit(final Command pCmd)
-    {
+    private void quit(final Command pCmd) {
         if(pCmd.hasSecondWord())
         {
             aGui.println("Qu'est-ce que vous voulez quitter ?");
@@ -92,9 +86,9 @@ public class GameEngine
 
     /**
      * Change de salle
+     * @param pCmd Commande à traiter
      */
-    private void goRoom(final Command pCmd)
-    {
+    private void goRoom(final Command pCmd) {
         if(!pCmd.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
             aGui.println("Où va-t-on ?");
@@ -126,9 +120,8 @@ public class GameEngine
 
     /**
      * Retourne en arrière
-     * @param pCmd
      */
-    private void goBack(final Command pCmd)
+    private void goBack()
     {
         aModel.goBack();
     }
@@ -149,6 +142,10 @@ public class GameEngine
         aGui.println("Vous avez mangé et vous n'avez plus faim");
     }
 
+    /**
+     * Commande de test
+     * @param pCmd
+     */
     private void test(final Command pCmd) {
         if(!pCmd.hasSecondWord()) {
             // if there is no second word, we don't know where to go...
@@ -175,8 +172,12 @@ public class GameEngine
         else runTXTTest(vFile);
 
     }
-    private void runTXTTest(final File pFile)
-    {
+
+    /**
+     * Lit le fichier texte et l'execute
+     * @param pFile
+     */
+    private void runTXTTest(final File pFile) {
         Scanner vSc;
         try { // pour "essayer" les instructions suivantes
             vSc = new Scanner(pFile);
@@ -188,10 +189,13 @@ public class GameEngine
         catch ( final FileNotFoundException pFNFE ) {
             // traitement en cas d'exception
         } // catch
-    } // lecture
+    }
 
-    private void runXMLTest(final File pFile)
-    {
+    /**
+     * Lit le fichier XML et l'execute
+     * @param pFile
+     */
+    private void runXMLTest(final File pFile) {
         boolean vInitialState = false;
 
         try {
@@ -237,8 +241,7 @@ public class GameEngine
     /**
      * Quitte le jeu
      */
-    private void endGame()
-    {
+    private void endGame() {
         aGui.println("Merci d'avoir jouer, à bientot !");
         aGui.enable(false);
     }
