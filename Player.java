@@ -79,6 +79,13 @@ public class Player {
     }
 
     /**
+     * Retourne la liste des items du joueur
+     */
+    public String itemList() {
+        return this.aItems.toString();
+    }
+
+    /**
      * Retire un item
      * @param pItem
      */

@@ -59,6 +59,7 @@ public class GameEngine
         else if(pCmd.getCommandWord().equals("test")) this.test(pCmd);
         else if(pCmd.getCommandWord().equals("prendre")) this.take(pCmd);
         else if(pCmd.getCommandWord().equals("jeter")) this.drop(pCmd);
+        else if(pCmd.getCommandWord().equals("inventaire")) this.inventory(pCmd);
         else
         {
             aGui.println("Je ne comprends pas ce que vous voulez faire...");
@@ -190,6 +191,12 @@ public class GameEngine
         aModel.removeItem(vItem);
     }
 
+    /**
+     * Affiche l'invetaire 
+     */
+    private void inventory(final Command pCmd) {
+        aGui.println(this.aModel.getInventoryString());
+    }
 
     /**
      * Commande de test

@@ -88,6 +88,14 @@ public class GameModel
     }
 
     /**
+     * Retourne la liste des items du joueur
+     * @return
+     */
+    public String getInventoryString() {
+        return "Inventaire : " + this.aPlayer.itemList();
+    }
+
+    /**
      * Change l'affichage
      * @param pGui
      */
