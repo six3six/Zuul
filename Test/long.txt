@@ -1,0 +1,34 @@
+!Fichier de test
+!Cookie
+prendre cookie
+manger cookie
+manger
+aide
+regarder
+prendre caillou
+jeter caillou
+retour
+aller ouest
+aller ouest
+aller haut
+aller bas
+aller sud
+aller nord
+aller est
+aller est
+aller haut
+aller bas
+aller bas
+aller haut
+aller est
+aller haut
+
+retour
+retour
+retour
+retour
+retour
+retour
+retour
+retour
+retour

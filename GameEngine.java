@@ -46,6 +46,7 @@ public class GameEngine
      * @param pCmd
      */
     private boolean processCommand(final Command pCmd) {
+        aGui.println("");
         if(pCmd.isUnknown()) {
             aGui.println("Je ne comprends pas ce que vous voulez faire...");
             return false;
@@ -255,6 +256,7 @@ public class GameEngine
             vSc = new Scanner(pFile);
             while ( vSc.hasNextLine() ) {
                 String vLigne = vSc.nextLine();
+                if(vLigne.startsWith("!")) continue;
                 interpretCommand(vLigne);
             } // while
         } // try
