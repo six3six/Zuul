@@ -10,14 +10,14 @@ public class Player {
     private Room aCurrentRoom;
     private Stack<Room> aPreviousRooms;
     private String aNom;
-    private HashSet<Item> aItems;
+    private ItemList aItems;
 
     public Player(String pNom, Room pCurrentRoom)
     {
         this.aNom = pNom;
         this.aCurrentRoom = pCurrentRoom;
         this.aPreviousRooms = new Stack<>();
-        this.aItems = new HashSet<>();
+        this.aItems = new ItemList();
     }
 
     public Player(Room pCurrentRoom)
@@ -33,19 +33,6 @@ public class Player {
         return this.aCurrentRoom;
     }
 
-    /**
-     * Cherche l'item par son nom
-     * Si aucun item ne correspond alors la fonction retourne null
-     * @param pName nom de l'item recherché
-     * @return
-     */
-    public Item getItem(final String pName) {
-        for ( Item item: this.aItems) {
-            if(item.getName().toLowerCase().equals(pName.toLowerCase())) return item;
-        }
-
-        return null;
-    }
 
     /**
      * Recupere le nom du joueur
@@ -80,6 +67,10 @@ public class Player {
      */
     public void addItem(final Item pItem) {
         this.aItems.add(pItem);
+    }
+
+    public Item getByName(final String pName) {
+        return this.aItems.getByName(pName);
     }
 
     /**

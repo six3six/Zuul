@@ -9,7 +9,7 @@ public class Room
     private String aDescription;
     private HashMap<String, Room> aExits;
     private String aImageName;
-    private HashSet<Item> aItems;
+    private ItemList aItems;
     
     /**
      * Constructeur de room
@@ -18,7 +18,7 @@ public class Room
         this.aDescription = pDescription;
         this.aImageName = pImage;
         this.aExits = new HashMap<>();
-        this.aItems = new HashSet<>();
+        this.aItems = new ItemList();
     }
     
     /**
@@ -84,13 +84,7 @@ public class Room
      * Récupere la liste des salles disponibles
      */
     public String getItemString() {
-        StringBuilder vRes = new StringBuilder(10 + aItems.size()*10);
-        vRes.append("Items : ");
-        for(Item vItem : aItems)
-        {
-            vRes.append(" " + vItem.getName());
-        }
-        return vRes.toString();
+        return "Items : " + aItems.toString();
     }
 
     /**
@@ -102,6 +96,14 @@ public class Room
     }
 
     /**
+     * Recupere un objet de la salle
+     * @return
+     */
+    public Item getItem(final String pName) {
+        return this.aItems.getByName(pName);
+    }
+
+    /**
      * Retire un objet à la liste des objets
      * @param pItem
      */
@@ -109,27 +111,7 @@ public class Room
         aItems.remove(pItem);
     }
 
-    /**
-     * Recupere la liste des Items de la pièce
-     * @return
-     */
-    public HashSet<Item> getItems() {
-        return this.aItems;
-    }
 
-    /**
-     * Cherche l'item par son nom
-     * Si aucun item ne correspond alors la fonction retourne null
-     * @param pName nom de l'item recherché
-     * @return
-     */
-    public Item getItem(final String pName) {
-        for ( Item item: this.aItems) {
-            if(item.getName().toLowerCase().equals(pName.toLowerCase())) return item;
-        }
-
-        return null;
-    }
     
     /**
      * Créé les salles et les place en mémoires
@@ -155,11 +137,12 @@ public class Room
         
         getRoom("jardin").setExit("est", getRoom("rue"));
         getRoom("jardin").setExit("ouest", getRoom("salon"));
-        getRoom("jardin").addItem(new Item(0,"Journal Officiel", "Journal"));
+        getRoom("jardin").addItem(new Item(0,"Un caillou (inutile)", "Caillou"));
         
         getRoom("salon").setExit("est", getRoom("jardin"));
         getRoom("salon").setExit("sud", getRoom("cuisine"));
         getRoom("salon").setExit("haut", getRoom("chambre"));
+        getRoom("salon").addItem(new Item(1,"Un verre (inutile)", "Verre"));
         
         getRoom("cuisine").setExit("nord", getRoom("salon"));
         
@@ -169,6 +152,7 @@ public class Room
         getRoom("rue").setExit("est", getRoom("ministere"));
         getRoom("rue").setExit("bas", getRoom("egouts"));
         getRoom("rue").setExit("haut", getRoom("tour"));
+        getRoom("salon").addItem(new Item(99,"Epée certainement médiéval", "Grosse épée"));
         
         getRoom("egouts").setExit("nord", getRoom("bibliotheque"));
         getRoom("egouts").setExit("haut", getRoom("rue"));

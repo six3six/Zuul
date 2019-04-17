@@ -124,7 +124,7 @@ public class GameModel
      * @return
      */
     public Item getItem(final String pName) {
-        return this.aPlayer.getItem(pName);
+        return this.aPlayer.getByName(pName);
     }
 
     /**
