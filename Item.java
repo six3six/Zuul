@@ -7,7 +7,7 @@
  */
 public class Item
 {
-    private int aPoid;
+    private double aPoid;
     private String aDescription;
     private String aName;
 
@@ -17,7 +17,7 @@ public class Item
      * @param pDescription
      * @param pName
      */
-    public Item(final int pPoid, final String pDescription, final String pName)
+    public Item(final double pPoid, final String pDescription, final String pName)
     {
         this.aPoid = pPoid;
         this.aDescription = pDescription;
@@ -27,7 +27,7 @@ public class Item
     /**
      * @return Poid de l'item
      */
-    public int getPoid()
+    public double getPoid()
     {
         return this.aPoid;
     }

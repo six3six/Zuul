@@ -108,7 +108,7 @@ public class GameModel
      * Ajoute un objet au joueur
      * @param pItem
      */
-    public void addItem(final Item pItem) {
+    public void addItem(final Item pItem) throws Exception {
         this.aPlayer.addItem(pItem);
     }
 

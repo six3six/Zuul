@@ -48,6 +48,14 @@ public class ItemList {
         return getByName(pName) != null;
     }
 
+    public double getWeight() {
+        double ret = 0.0;
+        for (Item vItm : this.aItems) {
+            ret += vItm.getPoid();
+        }
+        return ret;
+    }
+
     public String toString()
     {
         String ret = "";

@@ -11,6 +11,7 @@ public class Player {
     private Stack<Room> aPreviousRooms;
     private String aNom;
     private ItemList aItems;
+    private double aPoidMax;
 
     public Player(String pNom, Room pCurrentRoom)
     {
@@ -18,6 +19,7 @@ public class Player {
         this.aCurrentRoom = pCurrentRoom;
         this.aPreviousRooms = new Stack<>();
         this.aItems = new ItemList();
+        this.aPoidMax = 10;
     }
 
     public Player(Room pCurrentRoom)
@@ -65,7 +67,10 @@ public class Player {
      * Ajoute un item
      * @param pItem
      */
-    public void addItem(final Item pItem) {
+    public void addItem(final Item pItem) throws Exception {
+        if(pItem.getPoid() + aItems.getWeight() > this.aPoidMax) {
+            throw new Exception("Poid dépassé");
+        }
         this.aItems.add(pItem);
     }
 

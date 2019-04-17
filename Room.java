@@ -152,12 +152,12 @@ public class Room
         getRoom("rue").setExit("est", getRoom("ministere"));
         getRoom("rue").setExit("bas", getRoom("egouts"));
         getRoom("rue").setExit("haut", getRoom("tour"));
-        getRoom("salon").addItem(new Item(99,"Epée certainement médiéval", "Grosse épée"));
-        
+
         getRoom("egouts").setExit("nord", getRoom("bibliotheque"));
         getRoom("egouts").setExit("haut", getRoom("rue"));
         
         getRoom("tour").setExit("bas", getRoom("rue"));
+        getRoom("tour").addItem(new Item(99,"Epée certainement médiéval", "Epée"));
         
         getRoom("bibliotheque").setExit("sud", getRoom("egouts"));
         

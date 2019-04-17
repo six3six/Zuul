@@ -159,8 +159,14 @@ public class GameEngine
             aGui.println("L'objet que vous avez tenté de prendre n'existe pas...");
             return;
         }
+        try {
+            aModel.addItem(vItem);
+        }
+        catch (Exception e) {
+            aGui.println(e.getMessage());
+            return;
+        }
 
-        aModel.addItem(vItem);
         aModel.getCurrentRoom().removeItem(vItem);
     }
 
