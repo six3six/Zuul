@@ -1,7 +1,9 @@
 !Fichier de test
 !Cookie
 prendre cookie
+inventaire
 manger cookie
+inventaire
 manger
 aide
 regarder
@@ -32,3 +34,5 @@ retour
 retour
 retour
 retour
+
+inventaire
