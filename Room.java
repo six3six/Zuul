@@ -138,6 +138,7 @@ public class Room
         getRoom("jardin").setExit("est", getRoom("rue"));
         getRoom("jardin").setExit("ouest", getRoom("salon"));
         getRoom("jardin").addItem(new Item(0,"Un caillou (inutile)", "Caillou"));
+        getRoom("jardin").addItem(new Item(0,"cookie magic", "cookie"));
         
         getRoom("salon").setExit("est", getRoom("jardin"));
         getRoom("salon").setExit("sud", getRoom("cuisine"));

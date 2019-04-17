@@ -99,6 +99,30 @@ public class Player {
     }
 
     /**
+     * Retire un item
+     * @param pName
+     */
+    public void removeItem(final String pName) {
+        this.aItems.removeByName(pName);
+    }
+
+    /**
+     * Retourne la valeur du poid max
+     * @return
+     */
+    public double getMaxWeigth() {
+        return this.aPoidMax;
+    }
+
+    /**
+     * Enregistre la valeur maximal de ce que peut transporter un joueur
+     * @param pMaxWeigth
+     */
+    public void setMaxWeigth(final double pMaxWeigth) {
+        this.aPoidMax = pMaxWeigth;
+    }
+
+    /**
      * Change de salle
      * @param pRoom future salle
      */

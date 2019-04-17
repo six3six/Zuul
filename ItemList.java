@@ -90,7 +90,7 @@ public class ItemList {
         if(isEmpty()) return "Pas d'item";
 
         for (Item vItm : this.aItems) {
-            ret += vItm.getName() + "";
+            ret += vItm.getName() + " ";
         }
         return ret;
     }

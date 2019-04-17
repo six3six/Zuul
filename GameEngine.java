@@ -55,7 +55,7 @@ public class GameEngine
         else if(pCmd.getCommandWord().equals("aide")) this.printHelp();
         else if(pCmd.getCommandWord().equals("quitter")) this.quit(pCmd);
         else if(pCmd.getCommandWord().equals("regarder")) this.look();
-        else if(pCmd.getCommandWord().equals("manger")) this.eat();
+        else if(pCmd.getCommandWord().equals("manger")) this.eat(pCmd);
         else if(pCmd.getCommandWord().equals("test")) this.test(pCmd);
         else if(pCmd.getCommandWord().equals("prendre")) this.take(pCmd);
         else if(pCmd.getCommandWord().equals("jeter")) this.drop(pCmd);
@@ -140,9 +140,25 @@ public class GameEngine
     /**
      * Mange
      */
-    private void eat()
-    {
-        aGui.println("Vous avez mangé et vous n'avez plus faim");
+    private void eat(final Command pCmd) {
+        if(!pCmd.hasSecondWord()) {
+            aGui.println("Vous avez mangé et vous n'avez plus faim");
+            return;
+        }
+
+        if(aModel.getItem(pCmd.getSecondWord()) == null) {
+            aGui.println("Vous n'avez pas ça sur vous...");
+            return;
+        }
+
+        if(pCmd.getSecondWord().equals("cookie")) {
+            aModel.removeItem("cookie");
+            aModel.increasePower(2);
+            aGui.println("Votre force a doublé");
+        }
+        else  {
+            aGui.println("Vous allez vous casser les dents si vous mangez ça...");
+        }
     }
 
     /**
@@ -192,7 +208,7 @@ public class GameEngine
     }
 
     /**
-     * Affiche l'invetaire 
+     * Affiche l'invetaire
      */
     private void inventory(final Command pCmd) {
         aGui.println(this.aModel.getInventoryString());

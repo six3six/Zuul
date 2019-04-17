@@ -121,10 +121,21 @@ public class GameModel
     }
 
     /**
-     * Enleve un objet au joueur
+     * Enleve un item au joueur
      */
     public void removeItem(final Item pItem) {
         this.aPlayer.removeItem(pItem);
+    }
+
+    /**
+     * Enleve un item au joueur grace à son nom
+     */
+    public void removeItem(final String pName) {
+        this.aPlayer.removeItem(pName);
+    }
+
+    public void increasePower(final int pFactor) {
+        aPlayer.setMaxWeigth(aPlayer.getMaxWeigth() * (double) pFactor);
     }
 
     /**
