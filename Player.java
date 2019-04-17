@@ -74,6 +74,11 @@ public class Player {
         this.aItems.add(pItem);
     }
 
+    /**
+     * Designe un item par son nom
+     * @param pName
+     * @return
+     */
     public Item getByName(final String pName) {
         return this.aItems.getByName(pName);
     }

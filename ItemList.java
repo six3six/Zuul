@@ -7,14 +7,26 @@ public class ItemList {
         this.aItems = new HashSet<>();
     }
 
+    /**
+     * Ajoute un item
+     * @param pItem
+     */
     public void add(final Item pItem) {
         aItems.add(pItem);
     }
 
+    /**
+     * Supprime un item
+     * @param pItem
+     */
     public void remove(final Item pItem) {
         aItems.remove(pItem);
     }
 
+    /**
+     * Vérifie si la liste est vide
+     * @return
+     */
     public boolean isEmpty() {
         return aItems.isEmpty();
     }
@@ -32,6 +44,11 @@ public class ItemList {
         return null;
     }
 
+    /**
+     * Supprime un objet désigné par son nom
+     * @param pName nom de l'item à supprimer
+     * @return
+     */
     public boolean removeByName(final String pName) {
         try {
             Item vItm = getByName(pName);
@@ -44,10 +61,18 @@ public class ItemList {
         }
     }
 
+    /**
+     * Vérifie si un item existe
+     * @param pName nom de l'item
+     * @return
+     */
     public boolean isExist(final String pName) {
         return getByName(pName) != null;
     }
 
+    /**
+     * Retourne le poid total
+     */
     public double getWeight() {
         double ret = 0.0;
         for (Item vItm : this.aItems) {
@@ -56,6 +81,9 @@ public class ItemList {
         return ret;
     }
 
+    /**
+     * Retourne la liste des items
+     */
     public String toString()
     {
         String ret = "";
