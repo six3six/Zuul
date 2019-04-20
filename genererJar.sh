@@ -22,7 +22,7 @@ fi
 
 echo -n "\nNom du fichier : "
 read name
-jar cf ../"²".jar ./*.* Assets LevelDesigner progdoc
+jar cf ../"$name".jar ./*.* Assets LevelDesigner progdoc
 jar ufe ../"$name".jar Game
 
 echo -n "\Voulez vous lister les fichier du jar ? (Y/n) "

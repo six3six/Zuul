@@ -7,4 +7,5 @@ script:
   - javadoc -d userdoc -author -version pkg_* *.java
   - javadoc -d progdoc -author -version -private -linksource *.java
   - javadoc -d userdoc -author -version *.java
-  - jar tf ../zuul.jar
+  - jar cf zuul.jar ./*.* Assets LevelDesigner progdoc
+  - jar ufe zuul.jar Game
