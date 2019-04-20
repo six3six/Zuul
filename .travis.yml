@@ -3,8 +3,8 @@ jdk: openjdk11
 script:
   - javac ./*/*.java
   - javac ./*.java
-  - javadoc -d progdoc -author -version -private -linksource pkg_* *.java
-  - javadoc -d userdoc -author -version pkg_* *.java
+  - javadoc -d progdoc -author -version -private -linksource * *.java
+  - javadoc -d userdoc -author -version * *.java
   - javadoc -d progdoc -author -version -private -linksource *.java
   - javadoc -d userdoc -author -version *.java
   - jar cf zuul.jar ./*.* Assets LevelDesigner progdoc
