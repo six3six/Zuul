@@ -3,9 +3,9 @@ jdk: openjdk11
 script:
   - javac ./*/*.java
   - javac ./*.java
-  - javadoc -d progdoc -author -version -private -linksource * *.java
-  - javadoc -d userdoc -author -version * *.java
+  - javadoc -d progdoc -author -version -private -linksource */ *.java
+  - javadoc -d userdoc -author -version */ *.java
   - javadoc -d progdoc -author -version -private -linksource *.java
   - javadoc -d userdoc -author -version *.java
-  - jar cf zuul.jar ./*.* Assets LevelDesigner progdoc
+  - jar cf zuul.jar ./*.* images Test LevelDesigner progdoc
   - jar ufe zuul.jar Game
