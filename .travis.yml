@@ -1,4 +1,10 @@
 language: java
-jdk: openjdk10
+jdk: openjdk11
 script:
-  - ./genererJar.sh
+  - javac ./*/*.java
+  - javac ./*.java
+  - javadoc -d progdoc -author -version -private -linksource pkg_* *.java
+  - javadoc -d userdoc -author -version pkg_* *.java
+  - javadoc -d progdoc -author -version -private -linksource *.java
+  - javadoc -d userdoc -author -version *.java
+  - jar tf ../zuul.jar
