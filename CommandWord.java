@@ -1,4 +1,13 @@
-package PACKAGE_NAME;
-
-public class CommandWord {
+public enum CommandWord {
+    UNKNOWN,
+    GO,
+    QUIT,
+    HELP,
+    LOOK,
+    EAT,
+    BACK,
+    TEST,
+    TAKE,
+    DROP,
+    INVENTORY
 }

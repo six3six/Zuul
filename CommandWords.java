@@ -1,3 +1,7 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * This class is part of the "World of Zuul" application. 
  * "World of Zuul" is a very simple, text based adventure game.  
@@ -10,36 +14,61 @@
  */
 public class CommandWords
 {
-    // tableau constant qui contient tous les mots de commande valides
-    private static final String[] sValidCommands = {
-        "aller", "quitter", "aide", "regarder", "manger", "retour", "test", "prendre", "jeter", "inventaire"
-    };
-    
+    HashMap<String, CommandWord> aValidCommands;
     
     /**
      * Constructeur par defaut
      */
     public CommandWords()
     {
-        // rien a faire pour le moment...
+        this.aValidCommands = new HashMap<>();
+
+        //Anglais
+        aValidCommands.put("go", CommandWord.GO);
+        aValidCommands.put("quit", CommandWord.QUIT);
+        aValidCommands.put("help", CommandWord.HELP);
+        aValidCommands.put("look", CommandWord.LOOK);
+        aValidCommands.put("eat", CommandWord.EAT);
+        aValidCommands.put("back", CommandWord.BACK);
+        aValidCommands.put("test", CommandWord.TEST);
+        aValidCommands.put("take", CommandWord.TAKE);
+        aValidCommands.put("drop", CommandWord.DROP);
+        aValidCommands.put("inventory", CommandWord.INVENTORY);
+
+        //Francais
+        aValidCommands.put("aller", CommandWord.GO);
+        aValidCommands.put("quitter", CommandWord.QUIT);
+        aValidCommands.put("aide", CommandWord.HELP);
+        aValidCommands.put("regarder", CommandWord.LOOK);
+        aValidCommands.put("manger", CommandWord.EAT);
+        aValidCommands.put("retour", CommandWord.BACK);
+        //aValidCommands.put("test", CommandWord.TEST);
+        aValidCommands.put("prendre", CommandWord.TAKE);
+        aValidCommands.put("jeter", CommandWord.DROP);
+        aValidCommands.put("inventaire", CommandWord.INVENTORY);
+
     } // CommandWords()
 
     /**
      * Verifie si une String donnee fait partie des commandes valides. 
-     * @param pString la String a tester
+     * @param pString la commande a tester
      * @return true si pString est une comande valide, false sinon
      */
     public boolean isCommand( final String pString )
     {
-        // pour chacune des commandes valides (du tableau constant)
-        for ( int i=0; i<sValidCommands.length; i++ ) {
-            // si elle est egale a pString
-            if ( sValidCommands[i].equals( pString ) )
-                return true;
-        } // for
-        // si nous arrivons la, c'est que la commande
-        // n'a pas ete trouvee dans le tableau
-        return false;
+        return aValidCommands.containsKey(pString);
+    } // isCommand()
+
+    /**
+     * Renvoie la commande correspondante
+     * @param pString la commande à renvoyer
+     * @return
+     */
+    public CommandWord getCommandWord( final String pString )
+    {
+        CommandWord vCommands = aValidCommands.get(pString);
+        if(vCommands == null) return CommandWord.UNKNOWN;
+        else return vCommands;
     } // isCommand()
     
     
@@ -48,8 +77,8 @@ public class CommandWords
      */
     public String getCommandList()
     {
-        StringBuilder vResult = new StringBuilder(sValidCommands.length * 10);
-        for(String command : sValidCommands) {
+        StringBuilder vResult = new StringBuilder(aValidCommands.size() * 10);
+        for(String command: aValidCommands.keySet()) {
             vResult.append(command + " ");
         }
         return vResult.toString();

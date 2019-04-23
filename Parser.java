@@ -57,7 +57,7 @@ public class Parser
         // with it. If not, create a "null" command (for unknown command).
 
         if ( this.aValidCommands.isCommand( vWord1 ) )
-            return new Command( vWord1, vWord2 );
+            return new Command( aValidCommands.getCommandWord(vWord1), vWord2 );
         else
             return new Command( null, vWord2 );
     } // getCommand(.)

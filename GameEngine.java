@@ -51,16 +51,16 @@ public class GameEngine
             aGui.println("Je ne comprends pas ce que vous voulez faire...");
             return false;
         }
-        if(pCmd.getCommandWord().equals("aller")) this.goRoom(pCmd);
-        else if(pCmd.getCommandWord().equals("retour")) this.goBack();
-        else if(pCmd.getCommandWord().equals("aide")) this.printHelp();
-        else if(pCmd.getCommandWord().equals("quitter")) this.quit(pCmd);
-        else if(pCmd.getCommandWord().equals("regarder")) this.look();
-        else if(pCmd.getCommandWord().equals("manger")) this.eat(pCmd);
-        else if(pCmd.getCommandWord().equals("test")) this.test(pCmd);
-        else if(pCmd.getCommandWord().equals("prendre")) this.take(pCmd);
-        else if(pCmd.getCommandWord().equals("jeter")) this.drop(pCmd);
-        else if(pCmd.getCommandWord().equals("inventaire")) this.inventory(pCmd);
+        if(pCmd.getCommandWord() == CommandWord.GO) this.goRoom(pCmd);
+        else if(pCmd.getCommandWord() == CommandWord.BACK) this.goBack();
+        else if(pCmd.getCommandWord() == CommandWord.HELP) this.printHelp();
+        else if(pCmd.getCommandWord() == CommandWord.QUIT) this.quit(pCmd);
+        else if(pCmd.getCommandWord() == CommandWord.LOOK) this.look();
+        else if(pCmd.getCommandWord() == CommandWord.EAT) this.eat(pCmd);
+        else if(pCmd.getCommandWord() == CommandWord.TEST) this.test(pCmd);
+        else if(pCmd.getCommandWord() == CommandWord.TAKE) this.take(pCmd);
+        else if(pCmd.getCommandWord() == CommandWord.DROP) this.drop(pCmd);
+        else if(pCmd.getCommandWord() == CommandWord.INVENTORY) this.inventory(pCmd);
         else
         {
             aGui.println("Je ne comprends pas ce que vous voulez faire...");
