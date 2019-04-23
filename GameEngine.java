@@ -47,24 +47,39 @@ public class GameEngine
      */
     private boolean processCommand(final Command pCmd) {
         aGui.println("");
-        if(pCmd.isUnknown()) {
-            aGui.println("Je ne comprends pas ce que vous voulez faire...");
-            return false;
-        }
-        if(pCmd.getCommandWord() == CommandWord.GO) this.goRoom(pCmd);
-        else if(pCmd.getCommandWord() == CommandWord.BACK) this.goBack();
-        else if(pCmd.getCommandWord() == CommandWord.HELP) this.printHelp();
-        else if(pCmd.getCommandWord() == CommandWord.QUIT) this.quit(pCmd);
-        else if(pCmd.getCommandWord() == CommandWord.LOOK) this.look();
-        else if(pCmd.getCommandWord() == CommandWord.EAT) this.eat(pCmd);
-        else if(pCmd.getCommandWord() == CommandWord.TEST) this.test(pCmd);
-        else if(pCmd.getCommandWord() == CommandWord.TAKE) this.take(pCmd);
-        else if(pCmd.getCommandWord() == CommandWord.DROP) this.drop(pCmd);
-        else if(pCmd.getCommandWord() == CommandWord.INVENTORY) this.inventory(pCmd);
-        else
-        {
-            aGui.println("Je ne comprends pas ce que vous voulez faire...");
-            return true;
+        switch (pCmd.getCommandWord()) {
+            case GO:
+                this.goRoom(pCmd);
+                break;
+            case EAT:
+                this.eat(pCmd);
+                break;
+            case BACK:
+                this.goBack();
+                break;
+            case DROP:
+                this.drop(pCmd);
+                break;
+            case TAKE:
+                this.take(pCmd);
+                break;
+            case HELP:
+                this.printHelp();
+                break;
+            case LOOK:
+                this.look();
+                break;
+            case QUIT:
+                this.quit(pCmd);
+                break;
+            case INVENTORY:
+                this.inventory(pCmd);
+            case TEST:
+                this.test(pCmd);
+            case UNKNOWN:
+            default:
+                aGui.println("Je ne comprends pas ce que vous voulez faire...");
+                break;
         }
         return false;
     }
