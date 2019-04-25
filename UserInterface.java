@@ -207,12 +207,12 @@ public class UserInterface implements ActionListener
         // there is only one possible action: text entry
 
         if(pE.getSource() == this.aEntryField) this.processCommand();
-        else if(pE.getSource() == this.aEatButton) aEngine.interpretCommand( "manger" );
-        else if(pE.getSource() == this.aHelpButton) aEngine.interpretCommand( "aide" );
+        else if(pE.getSource() == this.aEatButton) aEngine.interpretCommand( CommandWord.EAT.toString()  );
+        else if(pE.getSource() == this.aHelpButton) aEngine.interpretCommand( CommandWord.HELP.toString() );
         else {
             for (Map.Entry<String, JButton> vBtn : this.aCardinalBtn.entrySet()) {
                 if(pE.getSource() == vBtn.getValue()) {
-                    aEngine.interpretCommand("aller " + vBtn.getValue().getText().toLowerCase());
+                    aEngine.interpretCommand(CommandWord.GO.toString() + " " + vBtn.getValue().getText().toLowerCase());
                     break;
                 }
             }

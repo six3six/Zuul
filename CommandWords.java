@@ -22,31 +22,10 @@ public class CommandWords
     public CommandWords()
     {
         this.aValidCommands = new HashMap<>();
-
-        //Anglais
-        aValidCommands.put("go", CommandWord.GO);
-        aValidCommands.put("quit", CommandWord.QUIT);
-        aValidCommands.put("help", CommandWord.HELP);
-        aValidCommands.put("look", CommandWord.LOOK);
-        aValidCommands.put("eat", CommandWord.EAT);
-        aValidCommands.put("back", CommandWord.BACK);
-        aValidCommands.put("test", CommandWord.TEST);
-        aValidCommands.put("take", CommandWord.TAKE);
-        aValidCommands.put("drop", CommandWord.DROP);
-        aValidCommands.put("inventory", CommandWord.INVENTORY);
-
-        //Francais
-        aValidCommands.put("aller", CommandWord.GO);
-        aValidCommands.put("quitter", CommandWord.QUIT);
-        aValidCommands.put("aide", CommandWord.HELP);
-        aValidCommands.put("regarder", CommandWord.LOOK);
-        aValidCommands.put("manger", CommandWord.EAT);
-        aValidCommands.put("retour", CommandWord.BACK);
-        //aValidCommands.put("test", CommandWord.TEST);
-        aValidCommands.put("prendre", CommandWord.TAKE);
-        aValidCommands.put("jeter", CommandWord.DROP);
-        aValidCommands.put("inventaire", CommandWord.INVENTORY);
-
+        for (CommandWord vCW: CommandWord.values()) {
+            if(vCW == CommandWord.UNKNOWN) continue;
+            aValidCommands.put(vCW.toString(), vCW);
+        }
     } // CommandWords()
 
     /**

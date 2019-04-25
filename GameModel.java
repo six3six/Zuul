@@ -65,7 +65,7 @@ public class GameModel
      */
     public String getWelcomeString()  {
         return "Bienvenue dans Antisophia" + "\n" + 
-        "Si besoin, appuyez sur 'Aide' \n";
+        "Si besoin, appuyez sur '" + CommandWord.HELP + "' \n";
     }
 
     /**
