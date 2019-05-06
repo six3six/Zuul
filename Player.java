@@ -7,11 +7,17 @@ import java.util.Stack;
  * @author Louis DESPLANCHE
  */
 public class Player {
+    final static int sTimeLimit = 15;
+
+
     private Room aCurrentRoom;
     private Stack<Room> aPreviousRooms;
     private String aNom;
     private ItemList aItems;
     private double aPoidMax;
+    private int aCurrentTime;
+
+
 
     public Player(String pNom, Room pCurrentRoom)
     {
@@ -61,6 +67,14 @@ public class Player {
     public void goBack()
     {
         if(!aPreviousRooms.empty()) move(aPreviousRooms.pop());
+    }
+
+    /**
+     *
+     * @return current time
+     */
+    public int getCurrentTime() {
+        return this.aCurrentTime;
     }
 
     /**
@@ -122,6 +136,10 @@ public class Player {
         this.aPoidMax = pMaxWeigth;
     }
 
+    public void incrementTime(){
+        aCurrentTime++;
+    }
+
     /**
      * Change de salle
      * @param pRoom future salle
@@ -130,5 +148,7 @@ public class Player {
     {
         this.aCurrentRoom = pRoom;
     }
+
+
 
 }

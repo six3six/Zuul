@@ -114,6 +114,11 @@ public class GameEngine
             return;
         }
 
+        if(aModel.getPlayer().getCurrentTime()>Player.sTimeLimit) {
+            aGui.println("Impossible d'avancer le temps est écoulé");
+            return;
+        }
+
         String direction = pCmd.getSecondWord();
 
         // Try to leave current room.

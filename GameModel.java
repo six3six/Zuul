@@ -146,6 +146,10 @@ public class GameModel
         return this.aPlayer.getByName(pName);
     }
 
+    public Player getPlayer(){
+        return this.aPlayer;
+    }
+
     /**
      * Signal au GUI qu'une modification vient d'être effectué
      */
