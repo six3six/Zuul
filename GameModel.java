@@ -84,7 +84,8 @@ public class GameModel
     public String getLocationInfo() {
         return "Vous êtes " + getCurrentRoom().getDescription() + "\n" +
         getCurrentRoom().getExitString() + "\n" +
-        getCurrentRoom().getItemString();
+        getCurrentRoom().getItemString() + "\n" +
+        "il vous reste " + (Player.sTimeLimit - getPlayer().getCurrentTime()) + " déplacement(s)";
     }
 
     /**

@@ -147,6 +147,7 @@ public class Player {
     private void move(final Room pRoom)
     {
         this.aCurrentRoom = pRoom;
+        incrementTime();
     }
 
 
