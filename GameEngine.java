@@ -76,6 +76,8 @@ public class GameEngine
                 this.inventory(pCmd);
             case TEST:
                 this.test(pCmd);
+            case GIVEUP:
+                this.giveup(pCmd);
             case UNKNOWN:
             default:
                 aGui.println("Je ne comprends pas ce que vous voulez faire...");
@@ -116,6 +118,7 @@ public class GameEngine
 
         if(aModel.getPlayer().getCurrentTime()>Player.sTimeLimit) {
             aGui.println("Impossible d'avancer le temps est écoulé");
+            aGui.println("Si vous voulez abandonner tapez la commande : " + CommandWord.GIVEUP.toString());
             return;
         }
 
@@ -233,6 +236,14 @@ public class GameEngine
      */
     private void inventory(final Command pCmd) {
         aGui.println(this.aModel.getInventoryString());
+    }
+
+    /**
+     *
+     */
+    private void giveup(final Command pCmd){
+        aGui.println("Vous avez perdu");
+        quit(pCmd);
     }
 
     /**

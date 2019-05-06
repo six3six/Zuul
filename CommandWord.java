@@ -9,7 +9,8 @@ public enum CommandWord {
     TEST("test"),
     TAKE("take"),
     DROP("drop"),
-    INVENTORY("inventory");
+    INVENTORY("inventory"),
+    GIVEUP("giveup"),;
 
     private String aName;
 
