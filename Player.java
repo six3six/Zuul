@@ -93,7 +93,7 @@ public class Player {
      * @param pName
      * @return
      */
-    public Item getByName(final String pName) {
+    public Item getItemByName(final String pName) {
         return this.aItems.getByName(pName);
     }
 
