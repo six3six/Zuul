@@ -2,10 +2,13 @@ public class Beamer extends Item {
     private boolean aUsed;
     private Room aTargetRoom;
 
-    public Beamer(final double pPoid, final String pDescription, final String pName) {
+    public Beamer(final double pPoid, final String pDescription, final String pName, final Room pRoom){
         super(pPoid, pDescription, pName);
         this.aUsed = false;
-        this.aTargetRoom = null;
+        this.aTargetRoom = pRoom;
+    }
+    public Beamer(final double pPoid, final String pDescription, final String pName) {
+        this(pPoid, pDescription, pName, null);
     }
 
     public void attachRoom(final Room pRoom) {

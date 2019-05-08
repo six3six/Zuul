@@ -64,9 +64,22 @@ public class Player {
     /**
      * Retourne dans la précédente salle et la dépile
      */
-    public void goBack()
+    public String goBack()
     {
-        if(!aPreviousRooms.empty()) move(aPreviousRooms.pop());
+        if(!aPreviousRooms.empty()) {
+            Room vRoom = aPreviousRooms.pop();
+            if (getCurrentRoom().isExit(vRoom)) move(vRoom);
+            else return "Vous ne pouvez pas revenir en arrière car cette sortie n'éxiste pas";
+        }
+        else return "Vous ne pouvez pas revenir plus en arrière";
+        return "";
+    }
+
+    public boolean canBack() {
+        if(!aPreviousRooms.empty()){
+            return aCurrentRoom.isExit(aPreviousRooms.peek());
+        }
+        return false;
     }
 
     /**

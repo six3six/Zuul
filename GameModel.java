@@ -38,7 +38,7 @@ public class GameModel
      * Retourne à la salle précédente
      */
     public void goBack() {
-        this.aPlayer.goBack();
+        aGui.println(aPlayer.goBack());
         sendSignal();
     }
 

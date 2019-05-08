@@ -27,6 +27,7 @@ public class UserInterface implements ActionListener
     private JLabel     aImage;
     private JButton    aHelpButton;
     private JButton    aEatButton;
+    private JButton    aBackButton;
     private HashMap<String, JButton> aCardinalBtn;
 
     /**
@@ -156,8 +157,8 @@ public class UserInterface implements ActionListener
 
 
         this.aHelpButton = new JButton("Aide");
-
         this.aEatButton = new JButton("Manger");
+        this.aBackButton = new JButton("Retour");
 
         JPanel vContextPanel = new JPanel();
 
@@ -169,6 +170,7 @@ public class UserInterface implements ActionListener
         vContextPanel.add( this.aEntryField, BorderLayout.NORTH );
         vContextPanel.add( this.aHelpButton);
         vContextPanel.add( this.aEatButton);
+        vContextPanel.add( this.aBackButton);
         vContextPanel.add(vCardPanel, BorderLayout.EAST);
 
         this.aMyFrame.getContentPane().add( vPanel, BorderLayout.CENTER );
@@ -181,6 +183,7 @@ public class UserInterface implements ActionListener
         this.aEntryField.addActionListener( this );
         this.aEatButton.addActionListener( this );
         this.aHelpButton.addActionListener( this );
+        this.aBackButton.addActionListener( this );
 
         this.aMyFrame.pack();
         this.aMyFrame.setVisible( true );
@@ -209,6 +212,7 @@ public class UserInterface implements ActionListener
         if(pE.getSource() == this.aEntryField) this.processCommand();
         else if(pE.getSource() == this.aEatButton) aEngine.interpretCommand( CommandWord.EAT.toString()  );
         else if(pE.getSource() == this.aHelpButton) aEngine.interpretCommand( CommandWord.HELP.toString() );
+        else if(pE.getSource() == this.aBackButton) aEngine.interpretCommand( CommandWord.BACK.toString() );
         else {
             for (Map.Entry<String, JButton> vBtn : this.aCardinalBtn.entrySet()) {
                 if(pE.getSource() == vBtn.getValue()) {
@@ -252,6 +256,8 @@ public class UserInterface implements ActionListener
         for (Map.Entry<String, JButton> vBtn: aCardinalBtn.entrySet()) {
             vBtn.getValue().setEnabled(aModel.isExit(vBtn.getKey()));
         }
+
+        aBackButton.setEnabled(aModel.getPlayer().canBack());
     }
 
 

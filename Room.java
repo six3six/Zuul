@@ -1,3 +1,4 @@
+import java.awt.image.Kernel;
 import java.util.*;
 
 /**
@@ -151,12 +152,11 @@ public class Room
         
         getRoom("rue").setExit("ouest", getRoom("jardin"));
         getRoom("rue").setExit("est", getRoom("ministere"));
-        getRoom("rue").setExit("bas", getRoom("egouts"));
         getRoom("rue").setExit("haut", getRoom("tour"));
 
         getRoom("egouts").setExit("nord", getRoom("bibliotheque"));
         getRoom("egouts").setExit("haut", getRoom("rue"));
-        
+
         getRoom("tour").setExit("bas", getRoom("rue"));
         getRoom("tour").addItem(new Item(99,"Epée certainement médiéval", "Epée"));
         getRoom("tour").addItem(new Beamer(2, "Téléporteur magique", "Téléporteur"));
@@ -167,6 +167,7 @@ public class Room
         getRoom("ministere").setExit("ouest", getRoom("rue"));
         
         getRoom("bureau").setExit("bas", getRoom("ministere"));
+        getRoom("bureau").addItem(new Beamer(2, "Carte", "Carte", getRoom("egouts")));
     }
     
     /**
@@ -181,5 +182,12 @@ public class Room
      */
     public String getImageName() {
         return aImageName;
+    }
+
+    public boolean isExit(final Room pRoom) {
+        for (Map.Entry<String, Room> vExit : aExits.entrySet()){
+            if(vExit.getValue() == pRoom) return true;
+        }
+        return false;
     }
 } // Room
