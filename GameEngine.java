@@ -74,6 +74,7 @@ public class GameEngine
                 break;
             case INVENTORY:
                 this.inventory(pCmd);
+                break;
             case TEST:
                 this.test(pCmd);
                 break;
@@ -172,15 +173,29 @@ public class GameEngine
             return;
         }
 
-        if(aModel.getItem(pCmd.getSecondWord()) == null) {
+        else if(aModel.getItem(pCmd.getSecondWord()) == null) {
             aGui.println("Vous n'avez pas ça sur vous...");
             return;
         }
-
-        if(pCmd.getSecondWord().equals("cookie")) {
+        else if(pCmd.getSecondWord().equals("cookie")) {
             aModel.removeItem("cookie");
             aModel.increasePower(2);
             aGui.println("Votre force a doublé");
+        }
+        else if(aModel.getItem(pCmd.getSecondWord()).getClass() == Beamer.class) {
+            Beamer beamer = (Beamer) aModel.getItem(pCmd.getSecondWord());
+
+
+            if(beamer.isAttached() && !beamer.isUsed()) {
+                aModel.goRoom(beamer.use());
+                aGui.println("Téléportation !");
+            }
+            else if (!beamer.isUsed()) {
+                beamer.attachRoom(aModel.getCurrentRoom());
+                aGui.println("Votre téléporteur à été initialisé, vous serez téléporté ici la prochaine fois que vous le mangerez");
+            }
+            else if(beamer.isUsed()) aGui.println("Vous ne pouvez pas vous téléporter plus d'une fois...");
+
         }
         else  {
             aGui.println("Vous allez vous casser les dents si vous mangez ça...");

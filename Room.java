@@ -159,6 +159,7 @@ public class Room
         
         getRoom("tour").setExit("bas", getRoom("rue"));
         getRoom("tour").addItem(new Item(99,"Epée certainement médiéval", "Epée"));
+        getRoom("tour").addItem(new Beamer(2, "Téléporteur magique", "Téléporteur"));
         
         getRoom("bibliotheque").setExit("sud", getRoom("egouts"));
         
