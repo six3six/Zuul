@@ -1,5 +1,10 @@
-aller est
-aller ouest
-manger
-retour
-retour
+go est
+back
+eat
+take Caillou
+inventory
+help
+look
+drop Caillou
+inventory
+giveup

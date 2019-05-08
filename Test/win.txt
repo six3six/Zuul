@@ -1,0 +1,6 @@
+go est
+go est
+go haut
+take Carte
+eat Carte
+go nord

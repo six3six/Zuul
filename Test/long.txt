@@ -1,38 +1,59 @@
 !Fichier de test
 !Cookie
-prendre cookie
-inventaire
-manger cookie
-inventaire
-manger
-aide
-regarder
-prendre caillou
-jeter caillou
-retour
-aller ouest
-aller ouest
-aller haut
-aller bas
-aller sud
-aller nord
-aller est
-aller est
-aller haut
-aller bas
-aller bas
-aller haut
-aller est
-aller haut
+take cookie
+inventory
+eat cookie
+inventory
+eat
+help
+look
+take caillou
+drop caillou
+back
+go ouest
+go ouest
+go haut
+go bas
+go sud
+go nord
+go est
+go est
+go haut
+go bas
+go bas
+go haut
+go est
+go haut
 
-retour
-retour
-retour
-retour
-retour
-retour
-retour
-retour
-retour
+back
+back
+back
+back
+back
+back
+back
+back
+back
+back
+back
+back
+back
+back
+back
+back
+back
+back
+back
+back
+back
+back
+back
+back
+back
+back
+back
 
-inventaire
+inventory
+
+test win
+
