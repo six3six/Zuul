@@ -128,7 +128,7 @@ public class Room
         
         //Extérieur
         aRoomList.put("rue", new Room("dans une grande rue très large mais personne ne s'y promène...", "images/rue.jpg"));
-        aRoomList.put("egouts", new Room("dans les égouts, un endroit sal et mal odorant", ""));
+        aRoomList.put("egouts", new Room("dans les égouts, un endroit sal et mal odorant", "images/egout.jpg"));
         aRoomList.put("tour", new Room("dans la tour : certainement l'endroit le plus haut de la ville", "images/hall.jpg"));
         aRoomList.put("bibliotheque", new Room("dans la Grande Bibliothèque : pièce refermant tous le savoir d'une civilisation", ""));
         
