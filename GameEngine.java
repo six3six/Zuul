@@ -146,6 +146,12 @@ public class GameEngine
         else {
             aModel.goRoom(nextRoom);
         }
+
+        if(aModel.getCurrentRoom() == Room.getRoom("bibliotheque")) {
+            aGui.println("Vous avez atteint la bibliothèque");
+            aGui.println("Félicitation, vous avez gagné");
+            endGame();
+        };
     }
 
     /**
